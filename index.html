@@ -79,14 +79,25 @@
 
     .category-section {
       position: relative;
-      height: 400px; /* Możesz dostosować tę wartość */
-      background-size: 100% 100%; /* Rozciąganie tła na całą szerokość i wysokość */
+      height: 400px; /* Adjust the height of the background image section */
+      background-size: cover;
       background-position: center;
       color: white;
       text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 0; /* To ensure text content is above the background */
+    }
+
+    .category-section .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Optional overlay to darken background */
+      z-index: -1; /* Keep background behind text content */
     }
 
     footer p {
@@ -218,6 +229,7 @@
 
   <!-- Sekcja Terrariów -->
   <section id="terraroria" class="category-section" style="background-image: url('images/terraria.png.png');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-terraroria" class="section">
@@ -234,6 +246,7 @@
 
   <!-- Sekcja Paneli 3D -->
   <section id="panele" class="category-section" style="background-image: url('images/panel_background.jpg');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-panele" class="section">
@@ -250,6 +263,7 @@
 
   <!-- Sekcja Lasów -->
   <section id="sloiki" class="category-section" style="background-image: url('images/forest_background.jpg');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-sloiki" class="section">
@@ -266,6 +280,7 @@
 
   <!-- Sekcja Greenwall -->
   <section id="greenwall" class="category-section" style="background-image: url('images/greenwall_background.jpg');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-greenwall" class="section">
@@ -282,6 +297,7 @@
 
   <!-- Sekcja Customy -->
   <section id="customy" class="category-section" style="background-image: url('images/custom_background.jpg');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-customy" class="section">
@@ -298,6 +314,7 @@
 
   <!-- Sekcja Doniczki -->
   <section id="doniczki" class="category-section" style="background-image: url('images/doniczki_background.jpg');">
+    <div class="overlay"></div>
   </section>
 
   <section id="produkty-doniczki" class="section">
