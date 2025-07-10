@@ -15,7 +15,7 @@
     }
 
     nav {
-      background: #2c0055;
+      background: rgba(131, 35, 221, 0.8); /* Transparent violet background */
       padding: 10px 20px;
       display: flex;
       justify-content: center;
@@ -51,7 +51,7 @@
       position: absolute;
       background-color: #f4f4f4;
       color: #333;
-      width: 100vw; /* Full width of the page */
+      width: 100vw;
       padding: 20px;
       z-index: 1;
       box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -59,27 +59,23 @@
 
     nav .dropdown:hover .dropdown-content {
       display: block;
-      height: 300px; /* Extend dropdown to a reasonable height */
+      height: 300px;
     }
 
     header {
-      background: #2c0055;
+      background: #8323dd; /* Violet background for header */
       color: white;
       text-align: center;
       padding: 50px 20px;
     }
 
     header .logo {
-      max-width: 200px;
-    }
-
-    header h1 {
-      display: none;
+      width: 400px; /* Adjusted width for the logo */
     }
 
     .category-section {
       position: relative;
-      height: 100vh; /* 100% of the viewport height */
+      height: 100vh;
       background-size: cover;
       background-position: center;
       color: white;
@@ -97,7 +93,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4); /* Optional overlay to darken background */
+      background: rgba(0, 0, 0, 0.4);
       z-index: -1;
     }
 
@@ -169,6 +165,17 @@
         margin: 10px 0;
       }
     }
+
+    /* Scroll effect for the navbar */
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.querySelector("nav").style.background = "rgba(131, 35, 221, 0.9)";
+      } else {
+        document.querySelector("nav").style.background = "rgba(131, 35, 221, 0.8)";
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -263,7 +270,7 @@
   </section>
 
   <!-- Sekcja Lasów -->
-  <section id="sloiki" class="category-section" style="background-image: url('images/forest_background.jpg');">
+  <section id="sloiki" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 11\ lip\ 2025\,\ 00_00_01.png');">
     <div class="overlay"></div>
   </section>
 
@@ -271,7 +278,7 @@
     <div class="products">
       <div class="product">
         <a href="las-sloik-2l.html">
-          <img src="images/las.jpg" alt="Las w słoiku 2L">
+          <img src="images/ChatGPT Image 11 lip 2025, 00_00_01.png" alt="Las w słoiku 2L">
           <h3>Las w słoiku 2L</h3>
         </a>
         <a href="las-sloik-2l.html">Zobacz więcej</a>
@@ -280,7 +287,7 @@
   </section>
 
   <!-- Sekcja Greenwall -->
-  <section id="greenwall" class="category-section" style="background-image: url('images/greenwall_background.jpg');">
+  <section id="greenwall" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 10\ lip\ 2025\,\ 23_58_37.png');">
     <div class="overlay"></div>
   </section>
 
@@ -288,7 +295,7 @@
     <div class="products">
       <div class="product">
         <a href="greenwall.html">
-          <img src="images/greenwall.jpg" alt="Greenwall">
+          <img src="images/ChatGPT Image 10 lip 2025, 23_58_37.png" alt="Greenwall">
           <h3>Greenwall</h3>
         </a>
         <a href="greenwall.html">Zobacz więcej</a>
@@ -297,7 +304,7 @@
   </section>
 
   <!-- Sekcja Customy -->
-  <section id="customy" class="category-section" style="background-image: url('images/custom_background.jpg');">
+  <section id="customy" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 11\ lip\ 2025\,\ 00_31_46.png');">
     <div class="overlay"></div>
   </section>
 
@@ -305,7 +312,7 @@
     <div class="products">
       <div class="product">
         <a href="customy.html">
-          <img src="images/custom.jpg" alt="Customy">
+          <img src="images/ChatGPT Image 11 lip 2025, 00_31_46.png" alt="Customy">
           <h3>Customy</h3>
         </a>
         <a href="customy.html">Zobacz więcej</a>
@@ -336,4 +343,3 @@
 
 </body>
 </html>
-
