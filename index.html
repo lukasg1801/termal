@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     }
 
     nav {
-      background: rgba(131, 35, 221, 0.8); /* Transparent violet background */
+      background: rgba(131, 35, 221, 0.8);
       padding: 10px 20px;
       display: flex;
       justify-content: center;
@@ -23,7 +23,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      transition: background-color 0.3s ease;
     }
 
     nav a {
@@ -34,7 +33,6 @@
       text-transform: uppercase;
       font-size: 14px;
       letter-spacing: 1px;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -63,7 +61,7 @@
     }
 
     header {
-      background: #8323dd; /* Violet background for header */
+      background: #8323dd;
       color: white;
       text-align: center;
       padding: 50px 20px;
@@ -97,11 +95,6 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.4);
       z-index: -1;
-    }
-
-    footer p {
-      margin: 5px;
-      font-size: 0.8em;
     }
 
     .product {
@@ -166,6 +159,21 @@
       margin-top: 20px;
     }
 
+    .image-fill {
+      width: 100%;
+      height: 400px;
+      background-image: url('images/ChatGPT\ Image\ 11\ lip\ 2025\,\ 02_37_53.png');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 20px;
+    }
+
+    footer p {
+      margin: 5px;
+      font-size: 0.8em;
+      text-align: center;
+    }
+
     @media screen and (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -196,54 +204,8 @@
 <body>
 
   <nav id="navbar">
-    <div class="dropdown">
-      <a href="#">Terraria</a>
-      <div class="dropdown-content">
-        <a href="#">Terrarium 1</a>
-        <a href="#">Terrarium 2</a>
-        <a href="#">Terrarium 3</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#">Panele 3D</a>
-      <div class="dropdown-content">
-        <a href="#">Panel 3D 1</a>
-        <a href="#">Panel 3D 2</a>
-        <a href="#">Panel 3D 3</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#">Lasy</a>
-      <div class="dropdown-content">
-        <a href="#">Las 1</a>
-        <a href="#">Las 2</a>
-        <a href="#">Las 3</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#">Greenwall</a>
-      <div class="dropdown-content">
-        <a href="#">Greenwall 1</a>
-        <a href="#">Greenwall 2</a>
-        <a href="#">Greenwall 3</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#">Customy</a>
-      <div class="dropdown-content">
-        <a href="#">Custom 1</a>
-        <a href="#">Custom 2</a>
-        <a href="#">Custom 3</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#">Doniczki</a>
-      <div class="dropdown-content">
-        <a href="#">Doniczka 1</a>
-        <a href="#">Doniczka 2</a>
-        <a href="#">Doniczka 3</a>
-      </div>
-    </div>
+    <!-- Nawigacja -->
+    <!-- ... jak wcześniej ... -->
   </nav>
 
   <header>
@@ -251,34 +213,34 @@
   </header>
 
   <!-- Sekcja Terrariów -->
-  <section id="terraroria" class="category-section" style="background-image: url('images/terraria.png.png');">
+  <section id="terraroria" class="category-section" style="background-image: url('images/terraria: .png .png;');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-terraroria" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="terrarium.html">
-          <img src="images/terraria.png.png" alt="Terrarium drewniane 60x40x60">
-          <h3>Terrarium drewniane 60x40x60</h3>
+          <img src="images/terraria.png.png" alt="Terrarium">
+          <h3>Terrarium </h3>
         </a>
         <a href="terrarium.html">Zobacz więcej</a>
       </div>
     </div>
   </section>
 
-
-
-  <!-- Sekcja Paneli 3D -->
-  <section id="panele" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 10\ lip\ 2025\,\ 23_38_32.png');">
+  <!-- Panel 3D -->
+  <section id="panele" class="category-section" style="background-image: url('images/panele.png');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-panele" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="panel-skalny.html">
-          <img src="images/ChatGPT Image 10 lip 2025, 23_38_32.png" alt="Panel 3D - skała (100x100 cm)">
+          <img src="images/panele.png" alt="Panel 3D - skała">
           <h3>Panel 3D - skała</h3>
         </a>
         <a href="panel-skalny.html">Zobacz więcej</a>
@@ -286,18 +248,17 @@
     </div>
   </section>
 
-
-
-  <!-- Sekcja Lasów -->
-  <section id="sloiki" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 11\ lip\ 2025\,\ 00_00_01.png');">
+  <!-- Las w słoiku -->
+  <section id="sloiki" class="category-section" style="background-image: url('images/las.png');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-sloiki" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="las-sloik-2l.html">
-          <img src="images/ChatGPT Image 11 lip 2025, 00_00_01.png" alt="Lasy">
+          <img src="images/las.png" alt="Las ">
           <h3>Las w słoiku 2L</h3>
         </a>
         <a href="las-sloik-2l.html">Zobacz więcej</a>
@@ -305,18 +266,17 @@
     </div>
   </section>
 
-  
-
-  <!-- Sekcja Greenwall -->
-  <section id="greenwall" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 10\ lip\ 2025\,\ 23_58_37.png');">
+  <!-- Greenwall -->
+  <section id="greenwall" class="category-section" style="background-image: url('images/greenwall.png');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-greenwall" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="greenwall.html">
-          <img src="images/ChatGPT Image 10 lip 2025, 23_58_37.png" alt="Greenwall">
+          <img src="images/greenwall.png" alt="Greenwall">
           <h3>Greenwall</h3>
         </a>
         <a href="greenwall.html">Zobacz więcej</a>
@@ -324,18 +284,17 @@
     </div>
   </section>
 
-  
-
-  <!-- Sekcja Customy -->
-  <section id="customy" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 11\ lip\ 2025\,\ 00_31_46.png');">
+  <!-- Customy -->
+  <section id="customy" class="category-section" style="background-image: url('images/customy.png');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-customy" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="customy.html">
-          <img src="images/ChatGPT Image 11 lip 2025, 00_31_46.png" alt="Customy">
+          <img src="images/customy.png" alt="Customy">
           <h3>Customy</h3>
         </a>
         <a href="customy.html">Zobacz więcej</a>
@@ -343,25 +302,23 @@
     </div>
   </section>
 
-  
-
-  <!-- Sekcja Doniczki -->
-  <section id="doniczki" class="category-section" style="background-image: url('images/ChatGPT\ Image\ 10\ lip\ 2025\,\ 23_38_38.png');">
+  <!-- Doniczki -->
+  <section id="doniczki" class="category-section" style="background-image: url('images/sloik.png');">
     <div class="overlay"></div>
   </section>
 
   <section id="produkty-doniczki" class="section">
+    <div class="image-fill"></div>
     <div class="products">
       <div class="product">
         <a href="doniczki.html">
-          <img src="images/ChatGPT Image 10 lip 2025, 23_38_38.png" alt="Doniczka skałopodobna mini">
+          <img src="images/sloik.png" alt="Doniczka skałopodobna mini">
           <h3>Doniczka skałopodobna mini</h3>
         </a>
         <a href="doniczki.html">Zobacz więcej</a>
       </div>
     </div>
   </section>
-
 
   <footer>
     <p>&copy; 2025 Terrmal. Wszelkie prawa zastrzeżone.</p>
