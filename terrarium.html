@@ -2,22 +2,276 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Terrarium drewniane 60x40x60</title>
+  <title>Terraria - Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; }
-    h1 { color: #222; }
-    a.btn { display: inline-block; margin-top: 20px; background: #66aa66; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+    nav {
+      background: rgba(131,35,221,0.8);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+      transition: background 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(131,35,221,0.95);
+    }
+
+    nav .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .logo-nav {
+      height: 60px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #eee;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .info {
+      flex: 2;
+      padding: 20px;
+      min-width: 300px;
+    }
+
+    .info h1 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .info p {
+      margin-bottom: 15px;
+    }
+
+    .info .btn {
+      display: inline-block;
+      background: #28a745;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .info .btn:hover {
+      background-color: #218838;
+    }
+
+    .side-image {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+    }
+
+    .side-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      nav .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      .side-image {
+        order: -1;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+      <div class="nav-links">
+        <div class="dropdown"><a href="#">Terraria</a>
+          <div class="dropdown-content">
+            <a href="#">Terrarium 1</a>
+            <a href="#">Terrarium 2</a>
+            <a href="#">Terrarium 3</a>
+          </div>
+        </div>
+        <div class="dropdown"><a href="#">Panele 3D</a>
+          <div class="dropdown-content"><a href="#">Panel 1</a><a href="#">Panel 2</a><a href="#">Panel 3</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Lasy</a>
+          <div class="dropdown-content"><a href="#">Las 1</a><a href="#">Las 2</a><a href="#">Las 3</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Greenwall</a>
+          <div class="dropdown-content"><a href="#">GW 1</a><a href="#">GW 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Customy</a>
+          <div class="dropdown-content"><a href="#">Custom 1</a><a href="#">Custom 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Doniczki</a>
+          <div class="dropdown-content"><a href="#">Doniczka 1</a><a href="#">Doniczka 2</a></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Produkty -->
   <div class="container">
-    <h1>Terrarium drewniane 60x40x60</h1>
-    <img src="images/terrarium.jpg" alt="Terrarium drewniane 60x40x60">
-    <p>Obudowa z płyty meblowej, tło skalne, oświetlenie LED. Idealne dla gadów i płazów. W pełni wentylowane i estetyczne.</p>
-    <a class="btn" href="index.html">← Powrót na stronę główną</a>
+    <div class="info">
+      <h1>Terrarium 60x40x60 cm</h1>
+      <p>Idealne dla mniejszych gadów i płazów. LED, UVB, wentylacja. Tło i grawer dostępne dodatkowo.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 60x40x60" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 60x40x60">
+    </div>
   </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 80x40x40 cm</h1>
+      <p>Dla średnich gatunków. LED, UVB, szkło opcjonalnie. Możliwy grawer i tło.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 80x40x40" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 80x40x40">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 100x50x50 cm</h1>
+      <p>Dla większych aranżacji. Skaliste tło, UVB, LED, grzewcze lampy.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 100x50x50" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 100x50x50">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 120x50x50 cm</h1>
+      <p>Imponujące rozmiary, UVB, LED, tło, szkło i personalizacja.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 120x50x50" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 120x50x50">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 40x40x60 cm (wysokie)</h1>
+      <p>Dla nadrzewnych gatunków. Tropikalne tło, LED, UVB.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 40x40x60" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 40x40x60">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 40x40x80 cm</h1>
+      <p>Efektowna przestrzeń dla wspinających się zwierząt. Szkło, LED, UVB.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 40x40x80" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 40x40x80">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="info">
+      <h1>Terrarium 50x50x100 cm – XL</h1>
+      <p>Dla dużych nadrzewnych. UVB, LED, mata, tło, grawer dostępne.</p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie: Terrarium 50x50x100" class="btn">Kup teraz</a>
+    </div>
+    <div class="side-image">
+      <img src="images/zdjecie.png" alt="Zdjęcie boczne terrarium 50x50x100">
+    </div>
+  </div>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
 </body>
 </html>
