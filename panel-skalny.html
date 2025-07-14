@@ -2,22 +2,316 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Panel 3D - skała (100x100 cm)</title>
+  <title>Panele 3D – Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; }
-    h1 { color: #222; }
-    a.btn { display: inline-block; margin-top: 20px; background: #66aa66; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+    nav {
+      background: rgba(131,35,221,0.8);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    nav .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .logo-nav {
+      height: 100px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #eee;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .product-box {
+      display: flex;
+      max-width: 1300px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .gallery {
+      flex: 1.2;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-image {
+      width: 100%;
+      max-height: 600px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 12px;
+    }
+
+    .thumbnails img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .thumbnails img.active {
+      border-color: #8323dd;
+    }
+
+    .info {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .info h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .info p {
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 18px;
+      background: #28a745;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    .btn.cart {
+      background: #555;
+      margin-left: 10px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact-section h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #222;
+    }
+
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact-section button {
+      background: #8323dd;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .contact-section button:hover {
+      background: #6e1bb3;
+    }
+
+    @media(max-width: 768px) {
+      nav .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-box {
+        flex-direction: column;
+      }
+
+      .thumbnails {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Panel 3D - skała (100x100 cm)</h1>
-    <img src="images/panel.jpg" alt="Panel 3D - skała (100x100 cm)">
-    <p>Styropianowy panel z teksturą łupka. Lekki i łatwy w montażu. Nadaje się do wnętrz i terrariów.</p>
-    <a class="btn" href="index.html">← Powrót na stronę główną</a>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+      <div class="nav-links">
+        <div class="dropdown"><a href="#">Terraria</a>
+          <div class="dropdown-content"><a href="#">Terrarium 1</a><a href="#">Terrarium 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Panele 3D</a>
+          <div class="dropdown-content"><a href="#">Panel 1</a><a href="#">Panel 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Lasy</a>
+          <div class="dropdown-content"><a href="#">Las 1</a><a href="#">Las 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Greenwall</a>
+          <div class="dropdown-content"><a href="#">GW 1</a><a href="#">GW 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Customy</a>
+          <div class="dropdown-content"><a href="#">Custom 1</a><a href="#">Custom 2</a></div>
+        </div>
+        <div class="dropdown"><a href="#">Doniczki</a>
+          <div class="dropdown-content"><a href="#">Doniczka 1</a><a href="#">Doniczka 2</a></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PRODUCT SECTION -->
+  <div class="product-box">
+    <div class="gallery">
+      <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D">
+      <div class="thumbnails">
+        <img src="images/panel 1.png" class="thumb active" onclick="changeImage(0)">
+        <img src="images/panel2.png" class="thumb" onclick="changeImage(1)">
+        <img src="images/panel2.png class="thumb" onclick="changeImage(2)">
+      </div>
+    </div>
+
+    <div class="info">
+      <h1 id="title">Panel 3D – skała</h1>
+      <p id="desc">
+Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
+Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.
+      </p>
+      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie%20panelu%203D" class="btn">Kup teraz</a>
+      <button class="btn cart">Dodaj do koszyka</button>
+    </div>
   </div>
+
+  <!-- CONTACT FORM -->
+  <div class="contact-section">
+    <h2>Masz pytanie lub potrzebujesz wyceny?</h2>
+    <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
+      <input type="text" name="Imię i nazwisko" placeholder="Twoje imię i nazwisko" required>
+      <input type="email" name="Email" placeholder="Twój adres e-mail" required>
+      <textarea name="Wiadomość" rows="5" placeholder="Napisz czego potrzebujesz..." required></textarea>
+      <button type="submit">Wyślij zapytanie</button>
+    </form>
+  </div>
+
+  <script>
+    const titles = [
+      "Panel 3D – skała",
+      "Panel 3D – tropikalny korzeń",
+      "Panel 3D – pustynny klimat"
+    ];
+
+    const descriptions = [
+      "Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.\nStyl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.",
+      "Rzeźbione korzenie i mech, żywe struktury inspirowane tropikalnym lasem.\nIdealny do gabinetów SPA, salonów, akwarium lub tła dla roślin.",
+      "Wysuszona faktura pustyni – piaskowiec, czerwienie, struktury spękanej ziemi.\nNadaje się do wystroju orientalnego, loftowego lub industrialnego."
+    ];
+
+    const images = [
+      "images/panel1.jpg",
+      "images/panel2.jpg",
+      "images/panel3.jpg"
+    ];
+
+    function changeImage(index) {
+      document.getElementById("mainImage").src = images[index];
+      document.getElementById("title").textContent = titles[index];
+      document.getElementById("desc").textContent = descriptions[index];
+
+      document.querySelectorAll(".thumb").forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+    }
+  </script>
+
 </body>
 </html>
