@@ -7,9 +7,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
-img:before {
-  content: none !important;
-}
 
     nav {
       background: rgba(131,35,221,0.8);
@@ -251,11 +248,11 @@ img:before {
   <!-- PRODUCT SECTION -->
   <div class="product-box">
     <div class="gallery">
-      <img src="images/panelskalny.png" class="main-image" id="mainImage">
+      <img src="images/panel1.jpg" class="main-image" id="mainImage" alt="">
       <div class="thumbnails">
-        <img src="images/panel2.png" class="thumb active" onclick="changeImage(0)">
-        <img src="images/panel 1.png" class="thumb" onclick="changeImage(1)">
-        <img src="images/panel 1.png" class="thumb" onclick="changeImage(2)">
+        <img src="images/panel1.jpg" class="thumb active" onclick="changeImage(0)" alt="">
+        <img src="images/panel2.jpg" class="thumb" onclick="changeImage(1)" alt="">
+        <img src="images/panel3.jpg" class="thumb" onclick="changeImage(2)" alt="">
       </div>
     </div>
 
@@ -270,7 +267,7 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     </div>
   </div>
 
-  <!-- ZAPYTANIE O PRODUKT -->
+  <!-- INQUIRY FORM -->
   <div class="inquiry-form">
     <h2>Zapytaj o produkt</h2>
     <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
@@ -281,7 +278,6 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     </form>
   </div>
 
-  <!-- SKRYPT DO ZMIANY ZDJĘCIA I OPISU -->
   <script>
     const titles = [
       "Panel 3D – skała",
