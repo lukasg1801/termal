@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Panele 3D – Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
@@ -85,6 +84,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
+      flex-wrap: wrap;
     }
 
     .gallery {
@@ -106,6 +106,8 @@
     .thumbnails {
       display: flex;
       gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .thumbnails img {
@@ -155,48 +157,46 @@
       margin-left: 10px;
     }
 
-    /* Contact Section */
-    .contact-section {
-      max-width: 900px;
-      margin: 60px auto;
+    .inquiry-form {
+      max-width: 800px;
+      margin: 40px auto;
       background: #fff;
-      padding: 40px;
+      padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .contact-section h2 {
+    .inquiry-form h2 {
       margin-bottom: 20px;
-      font-size: 24px;
-      color: #222;
+      font-size: 22px;
     }
 
-    .contact-section form {
+    .inquiry-form form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
     }
 
-    .contact-section input,
-    .contact-section textarea {
-      padding: 12px;
+    .inquiry-form input,
+    .inquiry-form textarea {
+      margin-bottom: 15px;
+      padding: 10px;
       font-size: 15px;
-      border-radius: 5px;
       border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    .contact-section button {
+    .inquiry-form button {
+      width: fit-content;
+      padding: 10px 20px;
       background: #8323dd;
-      color: #fff;
-      padding: 12px;
+      color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
     }
 
-    .contact-section button:hover {
-      background: #6e1bb3;
+    .inquiry-form button:hover {
+      background: #6e1bbb;
     }
 
     @media(max-width: 768px) {
@@ -212,11 +212,6 @@
 
       .product-box {
         flex-direction: column;
-      }
-
-      .thumbnails {
-        flex-wrap: wrap;
-        justify-content: center;
       }
     }
   </style>
@@ -253,11 +248,11 @@
   <!-- PRODUCT SECTION -->
   <div class="product-box">
     <div class="gallery">
-      <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D">
+      <img src="images/panelskalny.png" class="main-image" id="mainImage">
       <div class="thumbnails">
-        <img src="images/panel 1.png" class="thumb active" onclick="changeImage(0)">
-        <img src="images/panel2.png" class="thumb" onclick="changeImage(1)">
-        <img src="images/panel2.png" class= "thumb" onclick="changeImage(2)">
+        <img src="images/panel2.png" class="thumb active" onclick="changeImage(0)">
+        <img src="images/panel 1.png" class="thumb" onclick="changeImage(1)">
+        <img src="images/panel 1.png" class="thumb" onclick="changeImage(2)">
       </div>
     </div>
 
@@ -267,22 +262,23 @@
 Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
 Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.
       </p>
-      <a href="mailto:kontakt@terrmall.pl?subject=Zamówienie%20panelu%203D" class="btn">Kup teraz</a>
+      <a href="#" class="btn">Kup teraz</a>
       <button class="btn cart">Dodaj do koszyka</button>
     </div>
   </div>
 
-  <!-- CONTACT FORM -->
-  <div class="contact-section">
-    <h2>Masz pytanie lub potrzebujesz wyceny?</h2>
+  <!-- ZAPYTANIE O PRODUKT -->
+  <div class="inquiry-form">
+    <h2>Zapytaj o produkt</h2>
     <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
-      <input type="text" name="Imię i nazwisko" placeholder="Twoje imię i nazwisko" required>
-      <input type="email" name="Email" placeholder="Twój adres e-mail" required>
-      <textarea name="Wiadomość" rows="5" placeholder="Napisz czego potrzebujesz..." required></textarea>
+      <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
+      <input type="email" name="email" placeholder="Twój email" required>
+      <textarea name="message" rows="5" placeholder="Twoja wiadomość..."></textarea>
       <button type="submit">Wyślij zapytanie</button>
     </form>
   </div>
 
+  <!-- SKRYPT DO ZMIANY ZDJĘCIA I OPISU -->
   <script>
     const titles = [
       "Panel 3D – skała",
