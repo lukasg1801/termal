@@ -2,22 +2,260 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Las w słoiku 2L</title>
+  <title>Lasy w słoiku – Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; }
-    h1 { color: #222; }
-    a.btn { display: inline-block; margin-top: 20px; background: #66aa66; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+    nav {
+      background: rgba(131,35,221,0.8);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .logo-nav {
+      height: 100px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0;
+      background: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1001;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .side-image {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+    }
+
+    .side-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .info {
+      flex: 2;
+      padding: 20px;
+      min-width: 300px;
+    }
+
+    .info h1 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .info p {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #28a745;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px 5px 0 0;
+    }
+
+    .btn:hover {
+      background-color: #218838;
+    }
+
+    .btn.cart {
+      background: #555;
+    }
+
+    .btn.readmore {
+      background: #8323dd;
+    }
+
+    .btn.readmore:hover {
+      background: #6e1bbb;
+    }
+
+    .more-text {
+      display: none;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    @media(max-width: 768px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      .side-image {
+        order: -1;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Las w słoiku 2L</h1>
-    <img src="images/las.jpg" alt="Las w słoiku 2L">
-    <p>Ekosystem zamknięty, mech, paproć i minerały. Do biura, salonu, na prezent. Trwały i bezobsługowy.</p>
-    <a class="btn" href="index.html">← Powrót na stronę główną</a>
+
+<!-- Pasek nawigacji -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+    <div class="nav-links">
+      <div class="dropdown"><a href="#">Terraria</a><div class="dropdown-content"><a href="#">Terrarium 1</a></div></div>
+      <div class="dropdown"><a href="#">Panele 3D</a><div class="dropdown-content"><a href="#">Panel 1</a></div></div>
+      <div class="dropdown"><a href="#">Lasy</a><div class="dropdown-content"><a href="#">Las 1</a></div></div>
+      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="#">GW 1</a></div></div>
+      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="#">Custom 1</a></div></div>
+      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="#">Doniczka 1</a></div></div>
+    </div>
   </div>
+</nav>
+
+<!-- PRODUKTY -->
+
+<!-- Rozmiar S -->
+<div class="container">
+  <div class="info">
+    <h1>Las w słoiku – rozmiar S</h1>
+    <p>Mały słoik z mchem i pojedynczą rośliną – idealny na biurko lub w prezencie.</p>
+    <button class="btn readmore" onclick="toggleMore('s')">Czytaj więcej</button>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart">Dodaj do koszyka</button>
+    <div class="more-text" id="s"> <!-- Tu wpisz pełny opis później --> </div>
+  </div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las S"></div>
+</div>
+
+<!-- Rozmiar M -->
+<div class="container">
+  <div class="info">
+    <h1>Las w słoiku – rozmiar M</h1>
+    <p>Klasyczna kompozycja z warstwami mchu, kamieni i kilku roślin.</p>
+    <button class="btn readmore" onclick="toggleMore('m')">Czytaj więcej</button>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart">Dodaj do koszyka</button>
+    <div class="more-text" id="m"></div>
+  </div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las M"></div>
+</div>
+
+<!-- Rozmiar L -->
+<div class="container">
+  <div class="info">
+    <h1>Las w słoiku – rozmiar L</h1>
+    <p>Rozbudowana kompozycja z większą ilością roślin i strukturą przestrzenną.</p>
+    <button class="btn readmore" onclick="toggleMore('l')">Czytaj więcej</button>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart">Dodaj do koszyka</button>
+    <div class="more-text" id="l"></div>
+  </div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las L"></div>
+</div>
+
+<!-- Rozmiar XL -->
+<div class="container">
+  <div class="info">
+    <h1>Las w słoiku – rozmiar XL</h1>
+    <p>Duża kompozycja z większymi roślinami i dodatkami – robi wrażenie!</p>
+    <button class="btn readmore" onclick="toggleMore('xl')">Czytaj więcej</button>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart">Dodaj do koszyka</button>
+    <div class="more-text" id="xl"></div>
+  </div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las XL"></div>
+</div>
+
+<!-- Rozmiar XXL -->
+<div class="container">
+  <div class="info">
+    <h1>Las w słoiku – rozmiar XXL / terrarium</h1>
+    <p>Prawdziwe, duże terrarium roślinne – także w zabudowie z LED i dekoracjami.</p>
+    <button class="btn readmore" onclick="toggleMore('xxl')">Czytaj więcej</button>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart">Dodaj do koszyka</button>
+    <div class="more-text" id="xxl"></div>
+  </div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las XXL"></div>
+</div>
+
+<!-- SKRYPT -->
+<script>
+  function toggleMore(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
 </body>
 </html>
