@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
 
     nav {
@@ -19,7 +20,7 @@
       align-items: center;
       padding: 10px 0;
     }
-    nav.scrolled { background: rgba(131,35,221,0.95); }
+
     .nav-inner {
       display: flex;
       align-items: center;
@@ -27,7 +28,8 @@
       width: 90%;
       max-width: 1200px;
     }
-    .logo-nav { height: 100px; max-height: 120px; }
+
+    .logo-nav { height: 100px; }
     .nav-links { display: flex; gap: 30px; flex-wrap: wrap; }
     .dropdown { position: relative; }
     .dropdown > a {
@@ -36,11 +38,11 @@
     }
     .dropdown-content {
       display: none; position: absolute; top: 100%; left: 0;
-      background: #fff; min-width: 200px;
+      background: #fff; min-width: 220px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001;
     }
     .dropdown-content a {
-      color: #333; padding: 12px 16px;
+      color: #333; padding: 10px 16px;
       text-decoration: none; display: block;
     }
     .dropdown-content a:hover { background-color: #eee; }
@@ -60,6 +62,7 @@
     .info {
       flex: 2; padding: 20px; min-width: 300px;
     }
+
     .info h1 { margin-bottom: 15px; color: #222; }
     .info p { margin-bottom: 15px; }
 
@@ -72,10 +75,9 @@
       border-radius: 5px;
       margin-top: 10px;
     }
+
     .btn.cart { background: #555; margin-left: 10px; }
-    .btn.cart:hover { background: #444; }
     .btn.more { background: #8323dd; margin-right: 10px; }
-    .btn.more:hover { background: #6b1cb3; }
 
     .side-image {
       flex: 1;
@@ -85,6 +87,7 @@
       justify-content: center;
       min-width: 200px;
     }
+
     .side-image img {
       max-width: 100%;
       border-radius: 10px;
@@ -107,27 +110,20 @@
 </head>
 <body>
 
-<nav id="navbar">
+<nav>
   <div class="nav-inner">
     <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
     <div class="nav-links">
       <div class="dropdown"><a href="#">Terraria</a>
-        <div class="dropdown-content"><a href="#">Terrarium 1</a><a href="#">Terrarium 2</a></div>
-      </div>
-      <div class="dropdown"><a href="#">Panele 3D</a>
-        <div class="dropdown-content"><a href="#">Panel 1</a><a href="#">Panel 2</a></div>
-      </div>
-      <div class="dropdown"><a href="#">Lasy</a>
-        <div class="dropdown-content"><a href="#">Las 1</a><a href="#">Las 2</a></div>
-      </div>
-      <div class="dropdown"><a href="#">Greenwall</a>
-        <div class="dropdown-content"><a href="#">GW 1</a><a href="#">GW 2</a></div>
-      </div>
-      <div class="dropdown"><a href="#">Customy</a>
-        <div class="dropdown-content"><a href="#">Custom 1</a><a href="#">Custom 2</a></div>
-      </div>
-      <div class="dropdown"><a href="#">Doniczki</a>
-        <div class="dropdown-content"><a href="#">Doniczka 1</a><a href="#">Doniczka 2</a></div>
+        <div class="dropdown-content">
+          <a href="#terrarium60">Terrarium 60x40x40 cm</a>
+          <a href="#terrarium80">Terrarium 80x40x40 cm</a>
+          <a href="#terrarium100">Terrarium 100x50x50 cm</a>
+          <a href="#terrarium120">Terrarium 120x50x50 cm</a>
+          <a href="#terrarium4060">Terrarium 40x40x60 cm</a>
+          <a href="#terrarium4080">Terrarium 40x40x80 cm</a>
+          <a href="#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+        </div>
       </div>
     </div>
   </div>
@@ -141,10 +137,7 @@ function toggleMore(id) {
 </script>
 
 <!-- PRODUKTY -->
-<!-- POWIELONY BLOK Z UNIKALNYM ID -->
-
-<!-- 1 -->
-<div class="container">
+<div class="container" id="terrarium60">
   <div class="info">
     <h1>Terrarium 60x40x40 cm</h1>
     <p>Kompaktowe terrarium idealne dla mniejszych zwierząt.</p>
@@ -152,162 +145,95 @@ function toggleMore(id) {
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more1">
-Kompaktowe terrarium 60x40x40 cm, idealne dla mniejszych gadów, płazów i bezkręgowców.
-
-Wykonanie:
-• Płyta meblowa (różne kolory)
-• Opcjonalnie: szkło
-
-W zestawie:
-• LED, UVB, grzewcza/mata, wentylacja, przesuwne drzwiczki
-
-Dodatkowo:
-• Tło strukturalne ręcznie robione
-• Grawer (np. imię pupila)
+Kompaktowe terrarium z płyty meblowej lub szkła.
+Zestaw: LED, UVB, grzałka, wentylacja, drzwiczki przesuwne.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 2 -->
-<div class="container">
+<div class="container" id="terrarium80">
   <div class="info">
     <h1>Terrarium 80x40x40 cm</h1>
-    <p>Większe terrarium dla średnich zwierząt.</p>
+    <p>Średnie terrarium dla gadów i płazów.</p>
     <button class="btn more" onclick="toggleMore('more2')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more2">
-Terrarium 80x40x40 cm, idealne dla średnich gatunków.
-
-Wykonanie:
-• Płyta meblowa
-• Opcjonalnie szkło
-
-W zestawie:
-• LED, UVB/grzewcza, wentylacja, drzwi przesuwne
-
-Dodatki:
-• Tło strukturalne ręcznie robione
-• Grawer
+Wykonane z płyty lub szkła.
+Zestaw: LED, UVB, mata grzewcza, wentylacja, przesuwne drzwi.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 3 -->
-<div class="container">
+<div class="container" id="terrarium100">
   <div class="info">
     <h1>Terrarium 100x50x50 cm</h1>
-    <p>Dla większych aranżacji i bioaktywności.</p>
+    <p>Terrarium do większych aranżacji bioaktywnych.</p>
     <button class="btn more" onclick="toggleMore('more3')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more3">
-Terrarium 100x50x50 cm – przestronne, dla większych zwierząt.
-
-Materiał:
-• Płyta meblowa (standard)
-• Szkło – dopłata
-
-W zestawie:
-• LED, UVB, grzewcze/mata, wentylacja, drzwi
-
-Dodatkowo:
-• Tło strukturalne
-• Grawer
+Duże terrarium z opcją szklaną.
+Zawiera: LED, UVB, mata, wentylacja. Dodatki: tło, grawer.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 4 -->
-<div class="container">
+<div class="container" id="terrarium120">
   <div class="info">
     <h1>Terrarium 120x50x50 cm</h1>
-    <p>Dla dużych gadów, imponujący rozmiar.</p>
+    <p>Terrarium dla dużych gadów.</p>
     <button class="btn more" onclick="toggleMore('more4')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more4">
-Materiał:
-• Płyta meblowa lub szkło
-
-W zestawie:
-• LED, UVB, mata/grzewcze, wentylacja, drzwi przesuwne
-
-Dodatki:
-• Tło strukturalne
-• Personalizowany grawer
+Materiały: płyta/szkło.
+Zestaw: LED, UVB, grzałka, wentylacja, przesuwne drzwi.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 5 -->
-<div class="container">
+<div class="container" id="terrarium4060">
   <div class="info">
     <h1>Terrarium 40x40x60 cm (wysokie)</h1>
-    <p>Idealne dla nadrzewnych zwierząt.</p>
+    <p>Dla nadrzewnych gatunków.</p>
     <button class="btn more" onclick="toggleMore('more5')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more5">
-Wykonanie:
-• Płyta meblowa lub szkło
-
-W zestawie:
-• LED, UVB, grzewcza lub mata, wentylacja
-
-Dodatki:
-• Tło tropikalne z winoroślami
-• Grawer dekoracyjny
+Wysokie terrarium. Wyposażenie: LED, UVB, tropikalne tło, wentylacja, opcjonalny grawer.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 6 -->
-<div class="container">
+<div class="container" id="terrarium4080">
   <div class="info">
     <h1>Terrarium 40x40x80 cm</h1>
-    <p>Dla zwierząt wspinających się.</p>
+    <p>Terrarium dla wspinających się zwierząt.</p>
     <button class="btn more" onclick="toggleMore('more6')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more6">
-Materiał:
-• Płyta meblowa lub szkło
-
-W zestawie:
-• LED, UVB/grzewcza, mata, wentylacja, przesuwne drzwi
-
-Dodatki:
-• Tło o wysokim realizmie
-• Grawer personalizowany
+Wysokie terrarium z tłem. Wyposażenie: LED, UVB, wentylacja, drzwi przesuwne.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
 </div>
 
-<!-- 7 -->
-<div class="container">
+<div class="container" id="terrariumXL">
   <div class="info">
     <h1>Terrarium 50x50x100 cm – XL</h1>
-    <p>Dla dużych nadrzewnych i pokazowych aranżacji.</p>
+    <p>Terrarium pokazowe XL.</p>
     <button class="btn more" onclick="toggleMore('more7')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart">Dodaj do koszyka</button>
     <div class="more-text" id="more7">
-Materiały:
-• Płyta meblowa lub szkło
-
-Wyposażenie:
-• LED, UVB, grzewcza, mata, wentylacja, drzwi przesuwne
-
-Dodatki:
-• Tło strukturalne
-• Grawer z motywem lub imieniem zwierzaka
+Wykonanie: płyta/szkło. Wyposażenie: LED, UVB, mata, wentylacja, tło strukturalne, grawer.
     </div>
   </div>
   <div class="side-image"><img src="images/zdjecie.png" alt=""></div>
