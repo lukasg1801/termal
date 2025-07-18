@@ -23,6 +23,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -47,28 +48,38 @@
     nav .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #f4f4f4;
+      background-color: #fff;
       color: #333;
-      width: 100vw;
-      padding: 20px;
+      min-width: 250px;
+      padding: 10px 20px;
       z-index: 1;
       box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     nav .dropdown:hover .dropdown-content {
       display: block;
-      height: 300px;
+    }
+
+    nav .dropdown-content a {
+      display: block;
+      padding: 8px 0;
+      color: #333;
+      text-decoration: none;
+    }
+
+    nav .dropdown-content a:hover {
+      text-decoration: underline;
     }
 
     header {
       background: #8323dd;
       color: white;
       text-align: center;
-      padding: 50px 20px;
+      padding: 30px 20px;
     }
 
     header .logo {
-      max-width: 200px;
+      max-width: 300px;
       width: 100%;
       height: auto;
     }
@@ -99,9 +110,7 @@
     .product {
       background: #8323dd;
       border-radius: 10px;
-      width: 100%;
       max-width: 320px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
       transition: transform 0.3s ease;
       margin: 0 auto;
@@ -119,6 +128,7 @@
       height: 200px;
       object-fit: cover;
       border-radius: 5px;
+      border: none;
     }
 
     .product h3 {
@@ -130,7 +140,7 @@
 
     .product a {
       display: inline-block;
-      margin-top: 10px;
+      margin: 10px auto 20px;
       padding: 10px 15px;
       background: #ffffff;
       color: #2c0055;
@@ -157,47 +167,58 @@
 </head>
 <body>
 
-  <nav id="navbar">
-    <div class="dropdown"><a href="#">Terraria</a>
+  <nav>
+    <div class="dropdown">
+      <a href="#">Terraria</a>
       <div class="dropdown-content">
-        <a href="#">Terrarium 1</a>
-        <a href="#">Terrarium 2</a>
-        <a href="#">Terrarium 3</a>
+        <a href="terrarium-60x40x40.html">Terrarium 60x40x40 cm</a>
+        <a href="terrarium-80x40x40.html">Terrarium 80x40x40 cm</a>
+        <a href="terrarium-100x50x50.html">Terrarium 100x50x50 cm</a>
+        <a href="terrarium-120x50x50.html">Terrarium 120x50x50 cm</a>
+        <a href="terrarium-40x40x60.html">Terrarium 40x40x60 cm (wysokie)</a>
+        <a href="terrarium-40x40x80.html">Terrarium 40x40x80 cm</a>
+        <a href="terrarium-50x50x100.html">Terrarium 50x50x100 cm – XL</a>
       </div>
     </div>
-    <div class="dropdown"><a href="#">Panele 3D</a>
+
+    <div class="dropdown">
+      <a href="#">Panele 3D</a>
       <div class="dropdown-content">
-        <a href="#">Panel 3D 1</a>
-        <a href="#">Panel 3D 2</a>
-        <a href="#">Panel 3D 3</a>
+        <a href="panel-skalny.html">Panel 3D – skała</a>
+        <a href="panel-korzen.html">Panel 3D – tropikalny korzeń</a>
+        <a href="panel-pustynny.html">Panel 3D – pustynny klimat</a>
       </div>
     </div>
-    <div class="dropdown"><a href="#">Lasy</a>
+
+    <div class="dropdown">
+      <a href="#">Lasy w szkle</a>
       <div class="dropdown-content">
-        <a href="#">Las 1</a>
-        <a href="#">Las 2</a>
-        <a href="#">Las 3</a>
+        <a href="las-s.html">Las w słoiku – rozmiar S</a>
+        <a href="las-m.html">Las w słoiku – rozmiar M</a>
+        <a href="las-l.html">Las w słoiku – rozmiar L</a>
+        <a href="las-xl.html">Las w słoiku – rozmiar XL</a>
+        <a href="las-xxl.html">Las w słoiku – rozmiar XXL / terrarium</a>
       </div>
     </div>
-    <div class="dropdown"><a href="#">Greenwall</a>
+
+    <div class="dropdown">
+      <a href="#">Greenwall</a>
       <div class="dropdown-content">
-        <a href="#">Greenwall 1</a>
-        <a href="#">Greenwall 2</a>
-        <a href="#">Greenwall 3</a>
+        <a href="greenwall.html">Zielone ściany</a>
       </div>
     </div>
-    <div class="dropdown"><a href="#">Customy</a>
+
+    <div class="dropdown">
+      <a href="#">Customy</a>
       <div class="dropdown-content">
-        <a href="#">Custom 1</a>
-        <a href="#">Custom 2</a>
-        <a href="#">Custom 3</a>
+        <a href="customy.html">Zamówienia indywidualne</a>
       </div>
     </div>
-    <div class="dropdown"><a href="#">Doniczki</a>
+
+    <div class="dropdown">
+      <a href="#">Doniczki</a>
       <div class="dropdown-content">
-        <a href="#">Doniczka 1</a>
-        <a href="#">Doniczka 2</a>
-        <a href="#">Doniczka 3</a>
+        <a href="doniczki.html">Doniczka skałopodobna mini</a>
       </div>
     </div>
   </nav>
@@ -206,85 +227,84 @@
     <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo">
   </header>
 
-  <!-- Sekcja przykładowa -->
+  <!-- Sekcje produktów -->
   <section class="section">
     <div class="image-section" style="background-image: url('images/terraria.png.png');"></div>
     <div class="products">
       <div class="product">
-        <a href="terrarium.html">
+        <a href="terrarium-60x40x60.html">
           <img src="images/terraria.png.png" alt="Terrarium">
           <h3>Terrarium drewniane 60x40x60</h3>
         </a>
-        <a href="terrarium.html">Zobacz więcej</a>
+        <a href="terrarium-60x40x60.html">Zobacz więcej</a>
       </div>
     </div>
   </section>
 
-<section class="section">
-  <div class="image-section" style="background-image: url('images/panelskalny.png');"></div>
-  <div class="products">
-    <div class="product">
-      <a href="panel-skalny.html">
-        <img src="images/panel 1.png" alt="Panel 3D - skała">
-        <h3>Panel 3D - skała</h3>
-      </a>
-      <a href="panel-skalny.html">Zobacz więcej</a>
+  <section class="section">
+    <div class="image-section" style="background-image: url('images/panelskalny.png');"></div>
+    <div class="products">
+      <div class="product">
+        <a href="panel-skalny.html">
+          <img src="images/panel 1.png" alt="Panel 3D - skała">
+          <h3>Panel 3D - skała</h3>
+        </a>
+        <a href="panel-skalny.html">Zobacz więcej</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="image-section" style="background-image: url('images/terrarium\ 1.png');"></div>
-  <div class="products">
-    <div class="product">
-      <a href="las-sloik-2l.html">
-        <img src="images/terrarium 1.png" alt="Las w słoiku 2L">
-        <h3>Las w słoiku 2L</h3>
-      </a>
-      <a href="las-sloik-2l.html">Zobacz więcej</a>
+  <section class="section">
+    <div class="image-section" style="background-image: url('images/terrarium 1.png');"></div>
+    <div class="products">
+      <div class="product">
+        <a href="las-xl.html">
+          <img src="images/terrarium 1.png" alt="Las w słoiku 2L">
+          <h3>Las w słoiku 2L</h3>
+        </a>
+        <a href="las-xl.html">Zobacz więcej</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="image-section" style="background-image: url('images/greenwall.png');"></div>
-  <div class="products">
-    <div class="product">
-      <a href="greenwall.html">
-        <img src="images/greenwall.png" alt="Greenwall">
-        <h3>Greenwall</h3>
-      </a>
-      <a href="greenwall.html">Zobacz więcej</a>
+  <section class="section">
+    <div class="image-section" style="background-image: url('images/greenwall.png');"></div>
+    <div class="products">
+      <div class="product">
+        <a href="greenwall.html">
+          <img src="images/greenwall.png" alt="Greenwall">
+          <h3>Greenwall</h3>
+        </a>
+        <a href="greenwall.html">Zobacz więcej</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="image-section" style="background-image: url('images/custom.png');"></div>
-  <div class="products">
-    <div class="product">
-      <a href="customy.html">
-        <img src="images/custom.png" alt="Customy">
-        <h3>Customy</h3>
-      </a>
-      <a href="customy.html">Zobacz więcej</a>
+  <section class="section">
+    <div class="image-section" style="background-image: url('images/custom.png');"></div>
+    <div class="products">
+      <div class="product">
+        <a href="customy.html">
+          <img src="images/custom.png" alt="Customy">
+          <h3>Customy</h3>
+        </a>
+        <a href="customy.html">Zobacz więcej</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="image-section" style="background-image: url('images/doniczki.png');"></div>
-  <div class="products">
-    <div class="product">
-      <a href="doniczki.html">
-        <img src="images/doniczki2.png" alt="Doniczka skałopodobna mini">
-        <h3>Doniczka skałopodobna mini</h3>
-      </a>
-      <a href="doniczki.html">Zobacz więcej</a>
+  <section class="section">
+    <div class="image-section" style="background-image: url('images/doniczki.png');"></div>
+    <div class="products">
+      <div class="product">
+        <a href="doniczki.html">
+          <img src="images/doniczki2.png" alt="Doniczka skałopodobna mini">
+          <h3>Doniczka skałopodobna mini</h3>
+        </a>
+        <a href="doniczki.html">Zobacz więcej</a>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <footer>
     <p>&copy; 2025 Terrmal. Wszelkie prawa zastrzeżone.</p>
