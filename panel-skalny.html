@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Panele 3D – Terrmal</title>
+  <title>Panel 3D – skała | Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +20,7 @@
       padding: 10px 0;
     }
 
-    nav .nav-inner {
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -200,7 +200,7 @@
     }
 
     @media(max-width: 768px) {
-      nav .nav-inner {
+      .nav-inner {
         flex-direction: column;
         gap: 10px;
       }
@@ -218,41 +218,59 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav id="navbar">
+  <!-- NAVIGATION -->
+  <nav>
     <div class="nav-inner">
       <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
       <div class="nav-links">
         <div class="dropdown"><a href="#">Terraria</a>
-          <div class="dropdown-content"><a href="#">Terrarium 1</a><a href="#">Terrarium 2</a></div>
+          <div class="dropdown-content">
+            <a href="terrarium.html">Terrarium 60x40</a>
+            <a href="terrarium.html#terrarium100">Terrarium 100x50</a>
+          </div>
         </div>
         <div class="dropdown"><a href="#">Panele 3D</a>
-          <div class="dropdown-content"><a href="#">Panel 1</a><a href="#">Panel 2</a></div>
+          <div class="dropdown-content">
+            <a href="panel-skalny.html">Panel skała</a>
+            <a href="panel-tropikalny.html">Panel tropikalny</a>
+            <a href="panel-pustynny.html">Panel pustynny</a>
+          </div>
         </div>
         <div class="dropdown"><a href="#">Lasy</a>
-          <div class="dropdown-content"><a href="#">Las 1</a><a href="#">Las 2</a></div>
+          <div class="dropdown-content">
+            <a href="las-sloik-2l.html">Las 2L</a>
+            <a href="las-sloik-5l.html">Las 5L</a>
+          </div>
         </div>
         <div class="dropdown"><a href="#">Greenwall</a>
-          <div class="dropdown-content"><a href="#">GW 1</a><a href="#">GW 2</a></div>
+          <div class="dropdown-content">
+            <a href="greenwall.html">Greenwall</a>
+          </div>
         </div>
         <div class="dropdown"><a href="#">Customy</a>
-          <div class="dropdown-content"><a href="#">Custom 1</a><a href="#">Custom 2</a></div>
+          <div class="dropdown-content">
+            <a href="customy.html">Custom 1</a>
+            <a href="customy.html">Custom 2</a>
+          </div>
         </div>
         <div class="dropdown"><a href="#">Doniczki</a>
-          <div class="dropdown-content"><a href="#">Doniczka 1</a><a href="#">Doniczka 2</a></div>
+          <div class="dropdown-content">
+            <a href="doniczki.html">Doniczka mini</a>
+            <a href="doniczki.html">Doniczka XL</a>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- PRODUCT SECTION -->
+  <!-- PRODUCT DISPLAY -->
   <div class="product-box">
     <div class="gallery">
-      <img src="images/panel.skalny.jpg" class="main-image" id="mainImage" alt="">
+      <img src="images/panel1.jpg" class="main-image" id="mainImage" alt="Panel 3D – skała">
       <div class="thumbnails">
-        <img src="images/panel.skalny.jpg" class="thumb active" onclick="changeImage(0)" alt="">
-        <img src="images/panel.aztecki.jpg" class="thumb" onclick="changeImage(1)" alt="">
-        <img src="images/panel.pustynia.jpg" class="thumb" onclick="changeImage(2)" alt="">
+        <img src="images/panel1.jpg" class="thumb active" onclick="changeImage(0)" alt="Skała">
+        <img src="images/panel2.jpg" class="thumb" onclick="changeImage(1)" alt="Korzeń">
+        <img src="images/panel3.jpg" class="thumb" onclick="changeImage(2)" alt="Pustynia">
       </div>
     </div>
 
@@ -267,7 +285,7 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     </div>
   </div>
 
-  <!-- INQUIRY FORM -->
+  <!-- FORM -->
   <div class="inquiry-form">
     <h2>Zapytaj o produkt</h2>
     <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
@@ -278,19 +296,8 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     </form>
   </div>
 
+  <!-- SCRIPT -->
   <script>
-    const titles = [
-      "Panel 3D – skała",
-      "Panel 3D – tropikalny korzeń",
-      "Panel 3D – pustynny klimat"
-    ];
-
-    const descriptions = [
-      "Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.\nStyl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.",
-      "Rzeźbione korzenie i mech, żywe struktury inspirowane tropikalnym lasem.\nIdealny do gabinetów SPA, salonów, akwarium lub tła dla roślin.",
-      "Wysuszona faktura pustyni – piaskowiec, czerwienie, struktury spękanej ziemi.\nNadaje się do wystroju orientalnego, loftowego lub industrialnego."
-    ];
-
     const images = [
       "images/panel1.jpg",
       "images/panel2.jpg",
@@ -299,9 +306,6 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
 
     function changeImage(index) {
       document.getElementById("mainImage").src = images[index];
-      document.getElementById("title").textContent = titles[index];
-      document.getElementById("desc").textContent = descriptions[index];
-
       document.querySelectorAll(".thumb").forEach((img, i) => {
         img.classList.toggle("active", i === index);
       });
