@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zamówienie | Terrmal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Moon Kids', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    nav {
+      background: rgba(131, 35, 221, 0.8);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    nav a {
+      margin: 0 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    nav a:hover {
+      color: #f4f4f4;
+    }
+    nav .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    nav .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f4f4f4;
+      color: #333;
+      min-width: 250px;
+      padding: 10px;
+      z-index: 1;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    nav .dropdown-content a {
+      display: block;
+      padding: 8px 12px;
+      color: #333;
+      text-decoration: none;
+    }
+    nav .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+    nav .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    header {
+      background: #8323dd;
+      text-align: center;
+      padding: 30px 20px 10px 20px;
+    }
+    header img.logo {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    header p.slogan {
+      color: white;
+      font-size: 18px;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #8323dd;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .order-summary {
+      margin-bottom: 30px;
+    }
+    .order-summary h2 {
+      margin-bottom: 10px;
+    }
+    .order-summary ul {
+      list-style: none;
+      padding: 0;
+    }
+    .order-summary li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    form button {
+      background: #8323dd;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #6e1bbb;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="dropdown"><a href="#">Terraria</a>
+      <div class="dropdown-content">
+        <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+        <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+        <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+        <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+        <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+        <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+        <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+      </div>
+    </div>
+    <div class="dropdown"><a href="#">Panele 3D</a>
+      <div class="dropdown-content">
+        <a href="panel-skalny.html">Panel 3D – skała</a>
+        <a href="panel-korzen.html">Panel 3D – tropikalny korzeń</a>
+        <a href="panel-pustynia.html">Panel 3D – pustynny klimat</a>
+      </div>
+    </div>
+    <div class="dropdown"><a href="#">Lasy</a>
+      <div class="dropdown-content">
+        <a href="las-s.html">Las w słoiku – rozmiar S</a>
+        <a href="las-m.html">Las w słoiku – rozmiar M</a>
+        <a href="las-l.html">Las w słoiku – rozmiar L</a>
+        <a href="las-xl.html">Las w słoiku – rozmiar XL</a>
+        <a href="las-xxl.html">Las w słoiku – rozmiar XXL</a>
+      </div>
+    </div>
+    <div class="dropdown"><a href="#">Greenwall</a>
+      <div class="dropdown-content">
+        <a href="greenwall.html">Greenwall</a>
+      </div>
+    </div>
+    <div class="dropdown"><a href="#">Customy</a>
+      <div class="dropdown-content">
+        <a href="customy.html">Customy</a>
+      </div>
+    </div>
+    <div class="dropdown"><a href="#">Doniczki</a>
+      <div class="dropdown-content">
+        <a href="doniczki.html">Doniczka skałopodobna mini</a>
+      </div>
+    </div>
+    <a href="b2b.html">B2B</a>
+  </nav>
+
+  <header>
+    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo"></a>
+    <p class="slogan">Natura w Twoim wnętrzu</p>
+  </header>
+
+  <div class="container">
+    <h1>Podsumowanie zamówienia</h1>
+
+    <div class="order-summary">
+      <h2>Produkty w koszyku:</h2>
+      <ul id="cart-items"></ul>
+      <p><strong>Razem: <span id="cart-total">0 zł</span></strong></p>
+    </div>
+
+    <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Imię i nazwisko" required>
+      <input type="email" name="email" placeholder="Adres e-mail" required>
+      <input type="text" name="address" placeholder="Adres dostawy" required>
+      <textarea name="message" rows="4" placeholder="Uwagi do zamówienia..."></textarea>
+      <button type="submit">Potwierdź zamówienie</button>
+    </form>
+  </div>
+
+  <script>
+    const items = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+
+    let total = 0;
+    items.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} – ${item.quantity} szt. – ${item.price * item.quantity} zł`;
+      total += item.price * item.quantity;
+      cartList.appendChild(li);
+    });
+    totalEl.textContent = `${total} zł`;
+  </script>
+</body>
+</html>

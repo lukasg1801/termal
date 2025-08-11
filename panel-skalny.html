@@ -8,262 +8,103 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
 
-    nav {
-      background: rgba(131,35,221,0.8);
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px 0;
-    }
+    /* NAVBAR (jak na index.html) */
+    nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; flex-wrap: wrap; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 90%; max-width: 1200px; }
+    .logo-nav { height: 100px; cursor: pointer; }
+    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items: center; }
+    .dropdown { position: relative; }
+    .dropdown > a { color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
+    .dropdown-content a { color: #333; padding: 10px 16px; text-decoration: none; display: block; }
+    .dropdown-content a:hover { background-color: #eee; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .cart-link { display:inline-flex; align-items:center; margin-left: 8px; color:#fff; text-decoration:none; }
+    .cart-link svg { width:28px; height:28px; }
+    .cart-link:hover { opacity:.85; }
 
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1200px;
-    }
+    /* STRUKTURA STRONY PRODUKTU – zachowana */
+    .product-box { display: flex; max-width: 1300px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; flex-wrap: wrap; }
+    .gallery { flex: 1.2; padding: 30px; display: flex; flex-direction: column; align-items: center; }
+    .main-image { width: 100%; max-height: 600px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+    .thumbnails { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .thumbnails img { width: 100px; height: 100px; object-fit: cover; cursor: pointer; border-radius: 5px; border: 2px solid transparent; transition: 0.2s; }
+    .thumbnails img.active { border-color: #8323dd; }
+    .info { flex: 1; padding: 30px; }
+    .info h1 { font-size: 26px; margin-bottom: 20px; color: #222; }
+    .info p { font-size: 16px; line-height: 1.6; white-space: pre-wrap; }
+    .btn { display: inline-block; margin-top: 20px; padding: 10px 18px; background: #28a745; color: #fff; text-decoration: none; border-radius: 5px; font-size: 15px; }
+    .btn.cart { background: #555; margin-left: 10px; }
 
-    .logo-nav {
-      height: 100px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown > a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #fff;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1001;
-    }
-
-    .dropdown-content a {
-      color: #333;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #eee;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .product-box {
-      display: flex;
-      max-width: 1300px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      flex-wrap: wrap;
-    }
-
-    .gallery {
-      flex: 1.2;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .main-image {
-      width: 100%;
-      max-height: 600px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .thumbnails {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .thumbnails img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      cursor: pointer;
-      border-radius: 5px;
-      border: 2px solid transparent;
-      transition: 0.2s;
-    }
-
-    .thumbnails img.active {
-      border-color: #8323dd;
-    }
-
-    .info {
-      flex: 1;
-      padding: 30px;
-    }
-
-    .info h1 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      color: #222;
-    }
-
-    .info p {
-      font-size: 16px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 18px;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 15px;
-    }
-
-    .btn.cart {
-      background: #555;
-      margin-left: 10px;
-    }
-
-    .inquiry-form {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .inquiry-form h2 {
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    .inquiry-form form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .inquiry-form input,
-    .inquiry-form textarea {
-      margin-bottom: 15px;
-      padding: 10px;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .inquiry-form button {
-      width: fit-content;
-      padding: 10px 20px;
-      background: #8323dd;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .inquiry-form button:hover {
-      background: #6e1bbb;
-    }
+    .inquiry-form { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .inquiry-form h2 { margin-bottom: 20px; font-size: 22px; }
+    .inquiry-form form { display: flex; flex-direction: column; }
+    .inquiry-form input, .inquiry-form textarea { margin-bottom: 15px; padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 5px; }
+    .inquiry-form button { width: fit-content; padding: 10px 20px; background: #8323dd; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .inquiry-form button:hover { background: #6e1bbb; }
 
     @media(max-width: 768px) {
-      .nav-inner {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .product-box {
-        flex-direction: column;
-      }
+      .nav-inner { flex-direction: column; gap: 10px; }
+      .nav-links { flex-direction: column; align-items: center; }
+      .product-box { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION z ikoną koszyka (SVG) -->
   <nav>
     <div class="nav-inner">
       <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
       <div class="nav-links">
         <div class="dropdown"><a href="#">Terraria</a>
           <div class="dropdown-content">
-            <a href="terrarium.html">Terrarium 60x40</a>
-            <a href="terrarium.html#terrarium100">Terrarium 100x50</a>
+            <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+            <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+            <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+            <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+            <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+            <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+            <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
           </div>
         </div>
         <div class="dropdown"><a href="#">Panele 3D</a>
           <div class="dropdown-content">
-            <a href="panel-skalny.html">Panel skała</a>
-            <a href="panel-tropikalny.html">Panel tropikalny</a>
-            <a href="panel-pustynny.html">Panel pustynny</a>
+            <a href="panel-skalny.html">Panel 3D – skała</a>
+            <a href="panel-tropikalny.html">Panel 3D – tropikalny</a>
+            <a href="panel-pustynny.html">Panel 3D – pustynny</a>
           </div>
         </div>
         <div class="dropdown"><a href="#">Lasy</a>
           <div class="dropdown-content">
-            <a href="las-sloik-2l.html">Las 2L</a>
-            <a href="las-sloik-5l.html">Las 5L</a>
+            <a href="las-s.html">Las S</a>
+            <a href="las-m.html">Las M</a>
+            <a href="las-l.html">Las L</a>
+            <a href="las-xl.html">Las XL</a>
+            <a href="las-xxl.html">Las XXL</a>
           </div>
         </div>
         <div class="dropdown"><a href="#">Greenwall</a>
-          <div class="dropdown-content">
-            <a href="greenwall.html">Greenwall</a>
-          </div>
+          <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
         </div>
         <div class="dropdown"><a href="#">Customy</a>
-          <div class="dropdown-content">
-            <a href="customy.html">Custom 1</a>
-            <a href="customy.html">Custom 2</a>
-          </div>
+          <div class="dropdown-content"><a href="customy.html">Customy</a></div>
         </div>
         <div class="dropdown"><a href="#">Doniczki</a>
-          <div class="dropdown-content">
-            <a href="doniczki.html">Doniczka mini</a>
-            <a href="doniczki.html">Doniczka XL</a>
-          </div>
+          <div class="dropdown-content"><a href="doniczki.html">Doniczki</a></div>
         </div>
+        <a href="b2b.html" style="color:#fff;">B2B</a>
+        <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- PRODUCT DISPLAY -->
+  <!-- PRODUCT DISPLAY (zachowany układ) -->
   <div class="product-box">
     <div class="gallery">
       <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D – skała">
@@ -276,16 +117,14 @@
 
     <div class="info">
       <h1 id="title">Panel 3D – skała</h1>
-      <p id="desc">
-Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
-Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.
-      </p>
+      <p id="desc">Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
+Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.</p>
       <a href="#" class="btn">Kup teraz</a>
-      <button class="btn cart">Dodaj do koszyka</button>
+      <button class="btn cart" onclick="addToCart('Panel 3D – skała', 299)">Dodaj do koszyka</button>
     </div>
   </div>
 
-  <!-- FORM -->
+  <!-- FORM (zachowany) -->
   <div class="inquiry-form">
     <h2>Zapytaj o produkt</h2>
     <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
@@ -296,7 +135,7 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     </form>
   </div>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT (galeria + koszyk) -->
   <script>
     const images = [
       "images/panel.skalny.jpg",
@@ -305,12 +144,20 @@ Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głę
     ];
 
     function changeImage(index) {
-      document.getElementById("mainImage").src = images[index];
-      document.querySelectorAll(".thumb").forEach((img, i) => {
-        img.classList.toggle("active", i === index);
+      document.getElementById('mainImage').src = images[index];
+      document.querySelectorAll('.thumb').forEach((img, i) => {
+        img.classList.toggle('active', i === index);
       });
     }
-  </script>
 
+    function addToCart(name, price) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(i => i.name === name);
+      if (existing) { existing.quantity = (existing.quantity || 1) + 1; }
+      else { cart.push({ name, price, quantity: 1 }); }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} dodano do koszyka!`);
+    }
+  </script>
 </body>
 </html>

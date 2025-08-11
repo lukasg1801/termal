@@ -28,20 +28,16 @@
       max-width: 1200px;
     }
 
-    .logo-nav {
-      height: 100px;
-    }
+    .logo-nav { height: 100px; }
 
     .nav-links {
       display: flex;
       gap: 30px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
+    .dropdown { position: relative; }
     .dropdown > a {
       color: white;
       text-decoration: none;
@@ -49,7 +45,6 @@
       font-size: 14px;
       text-transform: uppercase;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -59,17 +54,18 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       z-index: 1001;
     }
-
     .dropdown-content a {
       color: #333;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
     }
+    .dropdown:hover .dropdown-content { display: block; }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+    /* Ikona koszyka */
+    .cart-link { display:inline-flex; align-items:center; color:#fff; text-decoration:none; }
+    .cart-link svg { width:28px; height:28px; }
+    .cart-link:hover { opacity: .9; }
 
     .container {
       max-width: 1000px;
@@ -90,26 +86,15 @@
       justify-content: center;
       min-width: 300px;
     }
-
-    .side-image img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
+    .side-image img { max-width: 100%; border-radius: 10px; }
 
     .info {
       flex: 2;
       padding: 20px;
       min-width: 300px;
     }
-
-    .info h1 {
-      margin-bottom: 15px;
-      color: #222;
-    }
-
-    .info p {
-      margin-bottom: 10px;
-    }
+    .info h1 { margin-bottom: 15px; color: #222; }
+    .info p { margin-bottom: 10px; }
 
     .btn {
       display: inline-block;
@@ -120,22 +105,10 @@
       border-radius: 5px;
       margin: 5px 5px 0 0;
     }
-
-    .btn:hover {
-      background-color: #218838;
-    }
-
-    .btn.cart {
-      background: #555;
-    }
-
-    .btn.readmore {
-      background: #8323dd;
-    }
-
-    .btn.readmore:hover {
-      background: #6e1bbb;
-    }
+    .btn:hover { background-color: #218838; }
+    .btn.cart { background: #555; }
+    .btn.readmore { background: #8323dd; }
+    .btn.readmore:hover { background: #6e1bbb; }
 
     .more-text {
       display: none;
@@ -145,23 +118,10 @@
     }
 
     @media(max-width: 768px) {
-      .nav-inner {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .container {
-        flex-direction: column;
-      }
-
-      .side-image {
-        order: -1;
-      }
+      .nav-inner { flex-direction: column; gap: 10px; }
+      .nav-links { flex-direction: column; align-items: center; }
+      .container { flex-direction: column; }
+      .side-image { order: -1; }
     }
   </style>
 </head>
@@ -178,73 +138,78 @@
       <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="#">GW 1</a></div></div>
       <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="#">Custom 1</a></div></div>
       <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="#">Doniczka 1</a></div></div>
+      <a href="b2b.html" style="color:white;">B2B</a>
+      <!-- Ikona koszyka (SVG) -->
+      <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
+        </svg>
+      </a>
     </div>
   </div>
 </nav>
 
 <!-- PRODUKTY -->
 
-<!-- Rozmiar S -->
 <div class="container">
   <div class="info">
     <h1>Las w słoiku – rozmiar S</h1>
     <p>Mały słoik z mchem i pojedynczą rośliną – idealny na biurko lub w prezencie.</p>
     <button class="btn readmore" onclick="toggleMore('s')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart">Dodaj do koszyka</button>
-    <div class="more-text" id="s"> <!-- Tu wpisz pełny opis później --> </div>
+    <button class="btn cart" onclick="addToCart('Las w słoiku – S', 59)">Dodaj do koszyka</button>
+    <div class="more-text" id="s">Pełny opis dla rozmiaru S...</div>
   </div>
   <div class="side-image"><img src="images/las.jpg" alt="Las S"></div>
 </div>
 
-<!-- Rozmiar M -->
 <div class="container">
   <div class="info">
     <h1>Las w słoiku – rozmiar M</h1>
     <p>Klasyczna kompozycja z warstwami mchu, kamieni i kilku roślin.</p>
     <button class="btn readmore" onclick="toggleMore('m')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart">Dodaj do koszyka</button>
-    <div class="more-text" id="m"></div>
+    <button class="btn cart" onclick="addToCart('Las w słoiku – M', 89)">Dodaj do koszyka</button>
+    <div class="more-text" id="m">Pełny opis dla rozmiaru M...</div>
   </div>
   <div class="side-image"><img src="images/las.jpg" alt="Las M"></div>
 </div>
 
-<!-- Rozmiar L -->
 <div class="container">
   <div class="info">
     <h1>Las w słoiku – rozmiar L</h1>
     <p>Rozbudowana kompozycja z większą ilością roślin i strukturą przestrzenną.</p>
     <button class="btn readmore" onclick="toggleMore('l')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart">Dodaj do koszyka</button>
-    <div class="more-text" id="l"></div>
+    <button class="btn cart" onclick="addToCart('Las w słoiku – L', 129)">Dodaj do koszyka</button>
+    <div class="more-text" id="l">Pełny opis dla rozmiaru L...</div>
   </div>
   <div class="side-image"><img src="images/las.jpg" alt="Las L"></div>
 </div>
 
-<!-- Rozmiar XL -->
 <div class="container">
   <div class="info">
     <h1>Las w słoiku – rozmiar XL</h1>
     <p>Duża kompozycja z większymi roślinami i dodatkami – robi wrażenie!</p>
     <button class="btn readmore" onclick="toggleMore('xl')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart">Dodaj do koszyka</button>
-    <div class="more-text" id="xl"></div>
+    <button class="btn cart" onclick="addToCart('Las w słoiku – XL', 179)">Dodaj do koszyka</button>
+    <div class="more-text" id="xl">Pełny opis dla rozmiaru XL...</div>
   </div>
   <div class="side-image"><img src="images/las.jpg" alt="Las XL"></div>
 </div>
 
-<!-- Rozmiar XXL -->
 <div class="container">
   <div class="info">
     <h1>Las w słoiku – rozmiar XXL / terrarium</h1>
     <p>Prawdziwe, duże terrarium roślinne – także w zabudowie z LED i dekoracjami.</p>
     <button class="btn readmore" onclick="toggleMore('xxl')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart">Dodaj do koszyka</button>
-    <div class="more-text" id="xxl"></div>
+    <button class="btn cart" onclick="addToCart('Las w słoiku – XXL', 249)">Dodaj do koszyka</button>
+    <div class="more-text" id="xxl">Pełny opis dla rozmiaru XXL...</div>
   </div>
   <div class="side-image"><img src="images/las.jpg" alt="Las XXL"></div>
 </div>
@@ -254,6 +219,19 @@
   function toggleMore(id) {
     const el = document.getElementById(id);
     el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function addToCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // jeśli produkt już jest — zwiększ ilość
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${name} dodano do koszyka!`);
   }
 </script>
 
