@@ -7,115 +7,32 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
-
-    nav {
-      background: rgba(131,35,221,0.8);
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px 0;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1200px;
-    }
-
+    nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; width:90%; max-width:1200px; }
     .logo-nav { height: 100px; }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
+    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items:center; }
     .dropdown { position: relative; }
-    .dropdown > a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%; left: 0;
-      background: #fff;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      z-index: 1001;
-    }
-    .dropdown-content a {
-      color: #333;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
+    .dropdown > a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
+    .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; }
     .dropdown:hover .dropdown-content { display: block; }
+    /* koszyk */
+    .cart-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none}
+    .cart-link svg{width:28px;height:28px}
+    #cart-count{display:none;background:#ff3b30;color:#fff;font-size:12px;line-height:1;padding:3px 6px;border-radius:10px;margin-left:6px;min-width:18px;text-align:center}
 
-    /* Ikona koszyka */
-    .cart-link { display:inline-flex; align-items:center; color:#fff; text-decoration:none; }
-    .cart-link svg { width:28px; height:28px; }
-    .cart-link:hover { opacity: .9; }
-
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .side-image {
-      flex: 1;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 300px;
-    }
+    .container { max-width: 1000px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-wrap: wrap; }
+    .side-image { flex: 1; padding: 20px; display: flex; align-items: center; justify-content: center; min-width: 300px; }
     .side-image img { max-width: 100%; border-radius: 10px; }
-
-    .info {
-      flex: 2;
-      padding: 20px;
-      min-width: 300px;
-    }
+    .info { flex: 2; padding: 20px; min-width: 300px; }
     .info h1 { margin-bottom: 15px; color: #222; }
     .info p { margin-bottom: 10px; }
-
-    .btn {
-      display: inline-block;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      margin: 5px 5px 0 0;
-    }
+    .btn { display: inline-block; background: #28a745; color: #fff; text-decoration: none; padding: 10px 15px; border-radius: 5px; margin: 5px 5px 0 0; }
     .btn:hover { background-color: #218838; }
     .btn.cart { background: #555; }
     .btn.readmore { background: #8323dd; }
     .btn.readmore:hover { background: #6e1bbb; }
-
-    .more-text {
-      display: none;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      font-size: 14px;
-    }
+    .more-text { display: none; margin-top: 10px; white-space: pre-wrap; font-size: 14px; }
 
     @media(max-width: 768px) {
       .nav-inner { flex-direction: column; gap: 10px; }
@@ -127,19 +44,31 @@
 </head>
 <body>
 
-<!-- Pasek nawigacji -->
 <nav id="navbar">
   <div class="nav-inner">
     <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
     <div class="nav-links">
-      <div class="dropdown"><a href="#">Terraria</a><div class="dropdown-content"><a href="#">Terrarium 1</a></div></div>
-      <div class="dropdown"><a href="#">Panele 3D</a><div class="dropdown-content"><a href="#">Panel 1</a></div></div>
-      <div class="dropdown"><a href="#">Lasy</a><div class="dropdown-content"><a href="#">Las 1</a></div></div>
-      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="#">GW 1</a></div></div>
-      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="#">Custom 1</a></div></div>
-      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="#">Doniczka 1</a></div></div>
+      <div class="dropdown"><a href="#">Terraria</a><div class="dropdown-content">
+        <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+        <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+        <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+        <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+        <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+        <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+        <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+      </div></div>
+      <div class="dropdown"><a href="#">Panele 3D</a><div class="dropdown-content"><a href="panel-skalny.html">Panel 3D – skała</a></div></div>
+      <div class="dropdown"><a href="#">Lasy</a><div class="dropdown-content">
+        <a href="#las-s">Las w słoiku – S</a>
+        <a href="#las-m">Las w słoiku – M</a>
+        <a href="#las-l">Las w słoiku – L</a>
+        <a href="#las-xl">Las w słoiku – XL</a>
+        <a href="#las-xxl">Las w słoiku – XXL</a>
+      </div></div>
+      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div></div>
+      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="customy.html">Customy</a></div></div>
+      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="doniczki.html">Doniczki</a></div></div>
       <a href="b2b.html" style="color:white;">B2B</a>
-      <!-- Ikona koszyka (SVG) -->
       <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -147,14 +76,14 @@
           <circle cx="20" cy="21" r="1"></circle>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
         </svg>
+        <span id="cart-count">0</span>
       </a>
     </div>
   </div>
 </nav>
 
-<!-- PRODUKTY -->
-
-<div class="container">
+<!-- Rozmiar S -->
+<div class="container" id="las-s">
   <div class="info">
     <h1>Las w słoiku – rozmiar S</h1>
     <p>Mały słoik z mchem i pojedynczą rośliną – idealny na biurko lub w prezencie.</p>
@@ -166,7 +95,8 @@
   <div class="side-image"><img src="images/las.jpg" alt="Las S"></div>
 </div>
 
-<div class="container">
+<!-- Rozmiar M -->
+<div class="container" id="las-m">
   <div class="info">
     <h1>Las w słoiku – rozmiar M</h1>
     <p>Klasyczna kompozycja z warstwami mchu, kamieni i kilku roślin.</p>
@@ -178,7 +108,8 @@
   <div class="side-image"><img src="images/las.jpg" alt="Las M"></div>
 </div>
 
-<div class="container">
+<!-- Rozmiar L -->
+<div class="container" id="las-l">
   <div class="info">
     <h1>Las w słoiku – rozmiar L</h1>
     <p>Rozbudowana kompozycja z większą ilością roślin i strukturą przestrzenną.</p>
@@ -190,7 +121,8 @@
   <div class="side-image"><img src="images/las.jpg" alt="Las L"></div>
 </div>
 
-<div class="container">
+<!-- Rozmiar XL -->
+<div class="container" id="las-xl">
   <div class="info">
     <h1>Las w słoiku – rozmiar XL</h1>
     <p>Duża kompozycja z większymi roślinami i dodatkami – robi wrażenie!</p>
@@ -202,7 +134,8 @@
   <div class="side-image"><img src="images/las.jpg" alt="Las XL"></div>
 </div>
 
-<div class="container">
+<!-- Rozmiar XXL -->
+<div class="container" id="las-xxl">
   <div class="info">
     <h1>Las w słoiku – rozmiar XXL / terrarium</h1>
     <p>Prawdziwe, duże terrarium roślinne – także w zabudowie z LED i dekoracjami.</p>
@@ -214,26 +147,21 @@
   <div class="side-image"><img src="images/las.jpg" alt="Las XXL"></div>
 </div>
 
-<!-- SKRYPT -->
 <script>
   function toggleMore(id) {
     const el = document.getElementById(id);
     el.style.display = el.style.display === 'block' ? 'none' : 'block';
   }
 
-  function addToCart(name, price) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    // jeśli produkt już jest — zwiększ ilość
-    const existing = cart.find(i => i.name === name);
-    if (existing) {
-      existing.quantity = (existing.quantity || 1) + 1;
-    } else {
-      cart.push({ name, price, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${name} dodano do koszyka!`);
-  }
+  /* Wspólny skrypt koszyka */
+  (function(){
+    const KEY='cart';
+    function load(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){localStorage.removeItem(KEY);return[];} }
+    function save(c){ localStorage.setItem(KEY, JSON.stringify(c)); updateBadge(c); }
+    function updateBadge(c=load()){ const b=document.getElementById('cart-count'); if(!b) return; const n=c.reduce((a,i)=>a+(i.quantity||1),0); if(n>0){b.textContent=n;b.style.display='inline-block';} else {b.style.display='none';} }
+    window.addToCart=function(name,price){ const c=load(); const ex=c.find(i=>i.name===name&&i.price===price); if(ex){ex.quantity=(ex.quantity||1)+1;} else {c.push({name,price:Number(price),quantity:1});} save(c); alert(name+' dodano do koszyka!'); };
+    document.addEventListener('DOMContentLoaded',updateBadge);
+  })();
 </script>
-
 </body>
 </html>

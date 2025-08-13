@@ -8,22 +8,22 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
 
-    /* NAVBAR (jak na index.html) */
-    nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; flex-wrap: wrap; }
+    nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 90%; max-width: 1200px; }
-    .logo-nav { height: 100px; cursor: pointer; }
-    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items: center; }
+    .logo-nav { height: 100px; }
+    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items:center; }
     .dropdown { position: relative; }
-    .dropdown > a { color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
-    .dropdown-content a { color: #333; padding: 10px 16px; text-decoration: none; display: block; }
+    .dropdown > a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
+    .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; }
     .dropdown-content a:hover { background-color: #eee; }
     .dropdown:hover .dropdown-content { display: block; }
-    .cart-link { display:inline-flex; align-items:center; margin-left: 8px; color:#fff; text-decoration:none; }
-    .cart-link svg { width:28px; height:28px; }
-    .cart-link:hover { opacity:.85; }
 
-    /* STRUKTURA STRONY PRODUKTU – zachowana */
+    /* koszyk */
+    .cart-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none}
+    .cart-link svg{width:28px;height:28px}
+    #cart-count{display:none;background:#ff3b30;color:#fff;font-size:12px;line-height:1;padding:3px 6px;border-radius:10px;margin-left:6px;min-width:18px;text-align:center}
+
     .product-box { display: flex; max-width: 1300px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; flex-wrap: wrap; }
     .gallery { flex: 1.2; padding: 30px; display: flex; flex-direction: column; align-items: center; }
     .main-image { width: 100%; max-height: 600px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
@@ -51,113 +51,106 @@
   </style>
 </head>
 <body>
-  <!-- NAVIGATION z ikoną koszyka (SVG) -->
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
-      <div class="nav-links">
-        <div class="dropdown"><a href="#">Terraria</a>
-          <div class="dropdown-content">
-            <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
-            <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
-            <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
-            <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
-            <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
-            <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
-            <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
-          </div>
-        </div>
-        <div class="dropdown"><a href="#">Panele 3D</a>
-          <div class="dropdown-content">
-            <a href="panel-skalny.html">Panel 3D – skała</a>
-            <a href="panel-tropikalny.html">Panel 3D – tropikalny</a>
-            <a href="panel-pustynny.html">Panel 3D – pustynny</a>
-          </div>
-        </div>
-        <div class="dropdown"><a href="#">Lasy</a>
-          <div class="dropdown-content">
-            <a href="las-s.html">Las S</a>
-            <a href="las-m.html">Las M</a>
-            <a href="las-l.html">Las L</a>
-            <a href="las-xl.html">Las XL</a>
-            <a href="las-xxl.html">Las XXL</a>
-          </div>
-        </div>
-        <div class="dropdown"><a href="#">Greenwall</a>
-          <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
-        </div>
-        <div class="dropdown"><a href="#">Customy</a>
-          <div class="dropdown-content"><a href="customy.html">Customy</a></div>
-        </div>
-        <div class="dropdown"><a href="#">Doniczki</a>
-          <div class="dropdown-content"><a href="doniczki.html">Doniczki</a></div>
-        </div>
-        <a href="b2b.html" style="color:#fff;">B2B</a>
-        <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- PRODUCT DISPLAY (zachowany układ) -->
-  <div class="product-box">
-    <div class="gallery">
-      <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D – skała">
-      <div class="thumbnails">
-        <img src="images/panel.skalny.jpg" class="thumb active" onclick="changeImage(0)" alt="Skała">
-        <img src="images/panel.aztecki.jpg" class="thumb" onclick="changeImage(1)" alt="Korzeń">
-        <img src="images/panel.pustynia.jpg" class="thumb" onclick="changeImage(2)" alt="Pustynia">
+<nav>
+  <div class="nav-inner">
+    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+    <div class="nav-links">
+      <div class="dropdown"><a href="#">Terraria</a>
+        <div class="dropdown-content">
+          <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+          <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+          <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+          <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+          <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+          <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+          <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+        </div>
       </div>
+      <div class="dropdown"><a href="#">Panele 3D</a>
+        <div class="dropdown-content">
+          <a href="panel-skalny.html">Panel skała</a>
+          <a href="panel-tropikalny.html">Panel tropikalny</a>
+          <a href="panel-pustynny.html">Panel pustynny</a>
+        </div>
+      </div>
+      <div class="dropdown"><a href="#">Lasy</a>
+        <div class="dropdown-content">
+          <a href="lasy.html#las-s">Las w słoiku – S</a>
+          <a href="lasy.html#las-m">Las w słoiku – M</a>
+          <a href="lasy.html#las-l">Las w słoiku – L</a>
+          <a href="lasy.html#las-xl">Las w słoiku – XL</a>
+          <a href="lasy.html#las-xxl">Las w słoiku – XXL</a>
+        </div>
+      </div>
+      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div></div>
+      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="customy.html">Customy</a></div></div>
+      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="doniczki.html">Doniczki</a></div></div>
+      <a href="b2b.html" style="color:#fff;">B2B</a>
+      <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
+        </svg>
+        <span id="cart-count">0</span>
+      </a>
     </div>
+  </div>
+</nav>
 
-    <div class="info">
-      <h1 id="title">Panel 3D – skała</h1>
-      <p id="desc">Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
+<div class="product-box">
+  <div class="gallery">
+    <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D – skała">
+    <div class="thumbnails">
+      <img src="images/panel.skalny.jpg" class="thumb active" onclick="changeImage(0)" alt="Skała">
+      <img src="images/panel.aztecki.jpg" class="thumb" onclick="changeImage(1)" alt="Korzeń">
+      <img src="images/panel.pustynia.jpg" class="thumb" onclick="changeImage(2)" alt="Pustynia">
+    </div>
+  </div>
+
+  <div class="info">
+    <h1 id="title">Panel 3D – skała</h1>
+    <p id="desc">Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
 Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.</p>
-      <a href="#" class="btn">Kup teraz</a>
-      <button class="btn cart" onclick="addToCart('Panel 3D – skała', 299)">Dodaj do koszyka</button>
-    </div>
+    <a href="#" class="btn">Kup teraz</a>
+    <button class="btn cart" onclick="addToCart('Panel 3D – skała', 199)">Dodaj do koszyka</button>
   </div>
+</div>
 
-  <!-- FORM (zachowany) -->
-  <div class="inquiry-form">
-    <h2>Zapytaj o produkt</h2>
-    <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
-      <input type="email" name="email" placeholder="Twój email" required>
-      <textarea name="message" rows="5" placeholder="Twoja wiadomość..."></textarea>
-      <button type="submit">Wyślij zapytanie</button>
-    </form>
-  </div>
+<div class="inquiry-form">
+  <h2>Zapytaj o produkt</h2>
+  <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
+    <input type="email" name="email" placeholder="Twój email" required>
+    <textarea name="message" rows="5" placeholder="Twoja wiadomość..."></textarea>
+    <button type="submit">Wyślij zapytanie</button>
+  </form>
+</div>
 
-  <!-- SCRIPT (galeria + koszyk) -->
-  <script>
-    const images = [
-      "images/panel.skalny.jpg",
-      "images/panel.aztecki.jpg",
-      "images/panel.pustynia.jpg"
-    ];
+<script>
+  const images = [
+    "images/panel.skalny.jpg",
+    "images/panel.aztecki.jpg",
+    "images/panel.pustynia.jpg"
+  ];
+  function changeImage(index) {
+    document.getElementById("mainImage").src = images[index];
+    document.querySelectorAll(".thumb").forEach((img, i) => {
+      img.classList.toggle("active", i === index);
+    });
+  }
 
-    function changeImage(index) {
-      document.getElementById('mainImage').src = images[index];
-      document.querySelectorAll('.thumb').forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-    }
-
-    function addToCart(name, price) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const existing = cart.find(i => i.name === name);
-      if (existing) { existing.quantity = (existing.quantity || 1) + 1; }
-      else { cart.push({ name, price, quantity: 1 }); }
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} dodano do koszyka!`);
-    }
-  </script>
+  /* Wspólny skrypt koszyka */
+  (function(){
+    const KEY='cart';
+    function load(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){localStorage.removeItem(KEY);return[];} }
+    function save(c){ localStorage.setItem(KEY, JSON.stringify(c)); updateBadge(c); }
+    function updateBadge(c=load()){ const b=document.getElementById('cart-count'); if(!b) return; const n=c.reduce((a,i)=>a+(i.quantity||1),0); if(n>0){b.textContent=n;b.style.display='inline-block';} else {b.style.display='none';} }
+    window.addToCart=function(name,price){ const c=load(); const ex=c.find(i=>i.name===name&&i.price===price); if(ex){ex.quantity=(ex.quantity||1)+1;} else {c.push({name,price:Number(price),quantity:1});} save(c); alert(name+' dodano do koszyka!'); };
+    document.addEventListener('DOMContentLoaded',updateBadge);
+  })();
+</script>
 </body>
 </html>
