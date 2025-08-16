@@ -2,64 +2,72 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Panel 3D – skała | Terrmal</title>
+  <title>Panele 3D – Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
 
+    /* NAVBAR */
     nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 90%; max-width: 1200px; }
     .logo-nav { height: 100px; }
-    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items:center; }
+    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items: center; }
     .dropdown { position: relative; }
-    .dropdown > a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
-    .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; }
-    .dropdown-content a:hover { background-color: #eee; }
+    .dropdown > a { color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
+    .dropdown-content a { color: #333; padding: 10px 16px; text-decoration: none; display: block; }
+    .dropdown-content a:hover { background: #eee; }
     .dropdown:hover .dropdown-content { display: block; }
+    .cart-link { display:inline-flex; align-items:center; color:#fff; text-decoration:none; }
+    .cart-link svg { width:28px; height:28px; }
+    #cart-count { display:none; background:#ff3b30; color:#fff; font-size:12px; line-height:1; padding:3px 6px; border-radius:10px; margin-left:6px; min-width:18px; text-align:center; }
 
-    /* koszyk */
-    .cart-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none}
-    .cart-link svg{width:28px;height:28px}
-    #cart-count{display:none;background:#ff3b30;color:#fff;font-size:12px;line-height:1;padding:3px 6px;border-radius:10px;margin-left:6px;min-width:18px;text-align:center}
+    /* BOX PRODUKTU Z PRZEŁĄCZANIEM */
+    .product-box { display:flex; max-width:1200px; margin:40px auto; background:#fff; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden; flex-wrap:wrap; }
+    .gallery { flex:1.2; padding:24px; display:flex; flex-direction:column; align-items:center; gap:12px; min-width:300px; }
+    .main-image { width:100%; max-height:560px; object-fit:cover; border-radius:10px; }
+    .thumbs { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+    .thumb { width:100px; height:100px; object-fit:cover; border-radius:6px; cursor:pointer; border:2px solid transparent; }
+    .thumb.active { border-color:#8323dd; }
 
-    .product-box { display: flex; max-width: 1300px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; flex-wrap: wrap; }
-    .gallery { flex: 1.2; padding: 30px; display: flex; flex-direction: column; align-items: center; }
-    .main-image { width: 100%; max-height: 600px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
-    .thumbnails { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .thumbnails img { width: 100px; height: 100px; object-fit: cover; cursor: pointer; border-radius: 5px; border: 2px solid transparent; transition: 0.2s; }
-    .thumbnails img.active { border-color: #8323dd; }
-    .info { flex: 1; padding: 30px; }
-    .info h1 { font-size: 26px; margin-bottom: 20px; color: #222; }
-    .info p { font-size: 16px; line-height: 1.6; white-space: pre-wrap; }
-    .btn { display: inline-block; margin-top: 20px; padding: 10px 18px; background: #28a745; color: #fff; text-decoration: none; border-radius: 5px; font-size: 15px; }
-    .btn.cart { background: #555; margin-left: 10px; }
+    .info { flex:1; padding:24px; min-width:300px; }
+    .info h1 { font-size:24px; margin-bottom:12px; color:#222; }
+    .price { font-weight:bold; margin:6px 0 12px; color:#222; }
+    .info p { white-space:pre-wrap; line-height:1.55; }
+    .btn { display:inline-block; padding:10px 15px; border-radius:6px; text-decoration:none; color:#fff; background:#28a745; margin-top:10px; }
+    .btn.cart { background:#555; margin-left:8px; }
+    .btn.more { background:#8323dd; margin-right:8px; }
+    .btn.more:hover { background:#6e1bbb; }
+    .more-text { display:none; margin-top:10px; font-size:14px; white-space:pre-wrap; }
 
-    .inquiry-form { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .inquiry-form h2 { margin-bottom: 20px; font-size: 22px; }
-    .inquiry-form form { display: flex; flex-direction: column; }
-    .inquiry-form input, .inquiry-form textarea { margin-bottom: 15px; padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 5px; }
-    .inquiry-form button { width: fit-content; padding: 10px 20px; background: #8323dd; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    .inquiry-form button:hover { background: #6e1bbb; }
+    /* ZAPYTAJ O PRODUKT */
+    .inquiry-form { max-width: 1000px; margin: 30px auto 60px; background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .inquiry-form h2 { margin-bottom: 14px; font-size: 22px; color: #222; }
+    .inquiry-form form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .inquiry-form input, .inquiry-form textarea, .inquiry-form select {
+      padding: 10px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; width: 100%;
+    }
+    .inquiry-form textarea { grid-column: 1 / -1; min-height: 120px; }
+    .inquiry-form .actions { grid-column: 1 / -1; display: flex; gap: 10px; flex-wrap: wrap; }
+    .inquiry-form button { background:#8323dd; color:#fff; border:none; border-radius:6px; padding:10px 16px; cursor:pointer; }
+    .inquiry-form button:hover { background:#6e1bbb; }
+    .muted { font-size: 12px; color:#666; margin-top:8px; }
 
-    @media(max-width: 768px) {
-      .nav-inner { flex-direction: column; gap: 10px; }
-      .nav-links { flex-direction: column; align-items: center; }
-      .product-box { flex-direction: column; }
+    @media(max-width: 900px){
+      .product-box{ flex-direction:column; }
+      .gallery{ order:-1; }
+      .inquiry-form form { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-
- <nav>
+<!-- NAVBAR -->
+<nav>
   <div class="nav-inner">
-    <a href="index.html" aria-label="Strona główna">
-      <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav">
-    </a>
+    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
     <div class="nav-links">
-      <!-- TERRARIA -->
       <div class="dropdown"><a href="#">Terraria</a>
         <div class="dropdown-content">
           <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
@@ -72,7 +80,7 @@
         </div>
       </div>
 
-      <!-- PANELE 3D (NA TEJ SAMEJ STRONIE panele3d.html PRZEŁĄCZA PRODUKT) -->
+      <!-- PANELE 3D: linki ustawiają hash i przełączają produkt -->
       <div class="dropdown"><a href="#">Panele 3D</a>
         <div class="dropdown-content">
           <a href="panele3d.html#skalny"   data-key="skalny">Panel 3D – skała</a>
@@ -81,7 +89,6 @@
         </div>
       </div>
 
-      <!-- LASY -->
       <div class="dropdown"><a href="#">Lasy</a>
         <div class="dropdown-content">
           <a href="lasy.html#s">Las w słoiku – S</a>
@@ -92,21 +99,11 @@
         </div>
       </div>
 
-      <div class="dropdown"><a href="#">Greenwall</a>
-        <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
-      </div>
-
-      <div class="dropdown"><a href="#">Customy</a>
-        <div class="dropdown-content"><a href="customy.html">Customy</a></div>
-      </div>
-
-      <div class="dropdown"><a href="#">Doniczki</a>
-        <div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div>
-      </div>
-
+      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div></div>
+      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="customy.html">Customy</a></div></div>
+      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div></div>
       <a href="b2b.html" style="color:#fff;">B2B</a>
 
-      <!-- Ikona koszyka + licznik -->
       <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -120,59 +117,173 @@
   </div>
 </nav>
 
-
-
+<!-- BLOK PRODUKTÓW Z PRZEŁĄCZANIEM -->
 <div class="product-box">
   <div class="gallery">
-    <img src="images/panelskalny.png" class="main-image" id="mainImage" alt="Panel 3D – skała">
-    <div class="thumbnails">
-      <img src="images/panel.skalny.jpg" class="thumb active" onclick="changeImage(0)" alt="Skała">
-      <img src="images/panel.aztecki.jpg" class="thumb" onclick="changeImage(1)" alt="Korzeń">
-      <img src="images/panel.pustynia.jpg" class="thumb" onclick="changeImage(2)" alt="Pustynia">
+    <img id="mainImage" src="images/panel.skalny.jpg" alt="Panel 3D – skała" class="main-image">
+    <div class="thumbs">
+      <img class="thumb active"  src="images/panel.skalny.jpg"   alt="Skała"    data-key="skalny">
+      <img class="thumb"         src="images/panel.aztecki.jpg"  alt="Korzeń"   data-key="korzen">
+      <img class="thumb"         src="images/panel.pustynia.jpg" alt="Pustynia" data-key="pustynia">
     </div>
   </div>
 
   <div class="info">
     <h1 id="title">Panel 3D – skała</h1>
-    <p id="desc">Naturalna struktura łupka. Idealny do wnętrz w stylu surowym, rustykalnym lub loftowym.
-Styl: zimny kamień, szarości, grafit. Ręcznie modelowany panel z dużą głębią faktury.</p>
+    <div class="price">Cena: <span id="price">249,00 zł</span></div>
+    <p id="desc">Naturalna struktura łupka w chłodnych szarościach i graficie. Idealny do wnętrz loft/rustykalnych oraz jako tło do terrarium.</p>
+
+    <button class="btn more" onclick="toggleMore()">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
-    <button class="btn cart" onclick="addToCart('Panel 3D – skała', 199)">Dodaj do koszyka</button>
+    <button class="btn cart" id="addBtn">Dodaj do koszyka</button>
+
+    <div class="more-text" id="moreText" style="display:none;">
+• Materiał: lekki rdzeń + twarda warstwa wierzchnia • Ręcznie modelowana faktura • Odporność na wilgoć
+• Rozmiary na zamówienie • Opcja pod kolor
+    </div>
   </div>
 </div>
 
-<div class="inquiry-form">
+<!-- ZAPYTAJ O PRODUKT -->
+<div class="inquiry-form" id="zapytaj">
   <h2>Zapytaj o produkt</h2>
   <form action="mailto:kontakt@terrmall.pl" method="post" enctype="text/plain">
     <input type="text" name="name" placeholder="Twoje imię i nazwisko" required>
     <input type="email" name="email" placeholder="Twój email" required>
-    <textarea name="message" rows="5" placeholder="Twoja wiadomość..."></textarea>
-    <button type="submit">Wyślij zapytanie</button>
+    <input type="tel" name="phone" placeholder="Telefon (opcjonalnie)">
+    <input type="text" id="productField" name="product" placeholder="Produkt" readonly>
+    <select name="topic">
+      <option value="wycena">Zapytanie o wycenę</option>
+      <option value="dostępność">Dostępność / termin realizacji</option>
+      <option value="custom">Wersja custom / kolor</option>
+    </select>
+    <textarea name="message" placeholder="Twoja wiadomość..." required></textarea>
+    <div class="actions">
+      <button type="submit">Wyślij zapytanie</button>
+      <a class="muted">Wysłanie otworzy domyślny program pocztowy (mailto).</a>
+    </div>
   </form>
 </div>
 
 <script>
-  const images = [
-    "images/panel.skalny.jpg",
-    "images/panel.aztecki.jpg",
-    "images/panel.pustynia.jpg"
-  ];
-  function changeImage(index) {
-    document.getElementById("mainImage").src = images[index];
-    document.querySelectorAll(".thumb").forEach((img, i) => {
-      img.classList.toggle("active", i === index);
-    });
+  // --- Dane produktów ---
+  const PRODUCTS = {
+    skalny: {
+      name: 'Panel 3D – skała',
+      price: 249.00,
+      img: 'images/panel.skalny.jpg',
+      desc: 'Naturalna struktura łupka w chłodnych szarościach i graficie. Idealny do wnętrz loft/rustykalnych oraz jako tło do terrarium.',
+      more: '• Materiał: lekki rdzeń + twarda warstwa wierzchnia • Ręcznie modelowana faktura • Odporność na wilgoć\n• Rozmiary na zamówienie • Opcja pod kolor'
+    },
+    korzen: {
+      name: 'Panel 3D – tropikalny korzeń',
+      price: 279.00,
+      img: 'images/panel.aztecki.jpg',
+      desc: 'Organiczny relief imitujący splatające się korzenie. Daje efekt tropików w domu lub naturalistyczne tło do terrarium.',
+      more: '• Struktura przestrzenna o dużej głębi • Idealny pod rośliny epifityczne • Malowanie wielowarstwowe\n• Opcja ukrycia przewodów/mgiełki'
+    },
+    pustynia: {
+      name: 'Panel 3D – pustynny klimat',
+      price: 259.00,
+      img: 'images/panel.pustynia.jpg',
+      desc: 'Ciepłe beże i brązy z rysunkiem piaszczystej skały. Świetny dla pustynnych aranżacji i gadów stepowych.',
+      more: '• Tekstura kamienia piaskowego • Odporność na wysoką temperaturę/UV\n• Dopasowanie do wymiaru terrarium • Możliwość montażu półek skałkowych'
+    }
+  };
+
+  // --- Referencje ---
+  const mainImage = document.getElementById('mainImage');
+  const titleEl   = document.getElementById('title');
+  const priceEl   = document.getElementById('price');
+  const descEl    = document.getElementById('desc');
+  const moreEl    = document.getElementById('moreText');
+  const addBtn    = document.getElementById('addBtn');
+  const productField = document.getElementById('productField');
+  let currentKey  = 'skalny';
+
+  // --- Załaduj produkt + aktualizuj hash + pole formularza ---
+  function loadProduct(key, setHash = true){
+    const p = PRODUCTS[key];
+    if(!p) return;
+    currentKey = key;
+
+    // Miniatury
+    document.querySelectorAll('.thumb').forEach(t => t.classList.toggle('active', t.dataset.key === key));
+    // Treści
+    mainImage.src = p.img; mainImage.alt = p.name;
+    titleEl.textContent = p.name;
+    priceEl.textContent = p.price.toFixed(2).replace('.', ',') + ' zł';
+    descEl.textContent  = p.desc;
+    moreEl.textContent  = p.more;
+    moreEl.style.display = 'none';
+
+    // Uzupełnij formularz „Zapytaj o produkt”
+    if (productField) productField.value = p.name;
+
+    if (setHash) history.replaceState(null, '', '#' + key);
   }
 
-  /* Wspólny skrypt koszyka */
-  (function(){
-    const KEY='cart';
-    function load(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){localStorage.removeItem(KEY);return[];} }
-    function save(c){ localStorage.setItem(KEY, JSON.stringify(c)); updateBadge(c); }
-    function updateBadge(c=load()){ const b=document.getElementById('cart-count'); if(!b) return; const n=c.reduce((a,i)=>a+(i.quantity||1),0); if(n>0){b.textContent=n;b.style.display='inline-block';} else {b.style.display='none';} }
-    window.addToCart=function(name,price){ const c=load(); const ex=c.find(i=>i.name===name&&i.price===price); if(ex){ex.quantity=(ex.quantity||1)+1;} else {c.push({name,price:Number(price),quantity:1});} save(c); alert(name+' dodano do koszyka!'); };
-    document.addEventListener('DOMContentLoaded',updateBadge);
-  })();
+  // --- Miniatury klik ---
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', () => loadProduct(t.dataset.key));
+  });
+
+  // --- Dropdown „Panele 3D” (na tej stronie – bez przeładowania) ---
+  document.querySelectorAll('.dropdown-content a[data-key]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const key = a.getAttribute('data-key');
+      const href = a.getAttribute('href') || '';
+      const samePage = href.split('#')[0].endsWith('panele3d.html');
+      if (samePage) {
+        e.preventDefault();
+        loadProduct(key, true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // --- Czytaj więcej ---
+  function toggleMore(){
+    moreEl.style.display = (moreEl.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // --- Koszyk (localStorage) ---
+  function addToCart(name, price){
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ localStorage.removeItem('cart'); }
+    const idx = cart.findIndex(i => i.name === name && Number(i.price) === Number(price));
+    if(idx > -1) cart[idx].quantity = (cart[idx].quantity || 1) + 1;
+    else cart.push({ name, price, quantity: 1 });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateBadge(cart);
+    alert(name + ' dodano do koszyka!');
+  }
+  function updateBadge(cart){
+    const badge = document.getElementById('cart-count');
+    if(!badge) return;
+    try { cart = cart || JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ cart = []; }
+    const n = cart.reduce((a,i)=> a + (i.quantity || 1), 0);
+    if(n>0){ badge.textContent = n; badge.style.display='inline-block'; } else { badge.style.display='none'; }
+  }
+  addBtn.addEventListener('click', () => {
+    const p = PRODUCTS[currentKey];
+    addToCart(p.name, p.price);
+  });
+
+  // --- Obsługa wejścia z hashem i zmian hasha ---
+  function initFromHash(){
+    const key = (location.hash || '').replace('#','').trim();
+    if (key && PRODUCTS[key]) loadProduct(key, false);
+    else loadProduct('skalny', false);
+  }
+  window.addEventListener('hashchange', initFromHash);
+
+  // --- INIT ---
+  document.addEventListener('DOMContentLoaded', () => {
+    updateBadge();
+    initFromHash();
+  });
 </script>
+
 </body>
 </html>
