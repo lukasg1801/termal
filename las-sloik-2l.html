@@ -1,74 +1,119 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Lasy w słoiku – Terrmal</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
-    nav { background: rgba(131,35,221,0.8); position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
-    .nav-inner { display:flex; align-items:center; justify-content:space-between; width:90%; max-width:1200px; }
-    .logo-nav { height: 100px; }
-    .nav-links { display: flex; gap: 30px; flex-wrap: wrap; align-items:center; }
-    .dropdown { position: relative; }
-    .dropdown > a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1001; }
-    .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; }
-    .dropdown:hover .dropdown-content { display: block; }
-    /* koszyk */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{
+      scroll-behavior:smooth;
+      /* offset dla sticky nav przy natywnych skokach */
+      scroll-padding-top:120px;
+    }
+    body{font-family:Arial, sans-serif;background:#f4f4f4;color:#333}
+
+    /* NAVBAR */
+    nav{background:rgba(131,35,221,0.8);position:sticky;top:0;width:100%;z-index:1000;display:flex;justify-content:center;align-items:center;padding:10px 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:90%;max-width:1200px}
+    .logo-nav{height:100px}
+    .nav-links{display:flex;gap:30px;flex-wrap:wrap;align-items:center}
+    .dropdown{position:relative}
+    .dropdown > a{color:#fff;text-decoration:none;font-weight:bold;font-size:14px;text-transform:uppercase}
+    .dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:220px;box-shadow:0 8px 16px rgba(0,0,0,.2);z-index:1001}
+    .dropdown-content a{color:#333;padding:10px 16px;text-decoration:none;display:block}
+    .dropdown-content a:hover{background:#eee}
+    .dropdown:hover .dropdown-content{display:block}
+
     .cart-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none}
     .cart-link svg{width:28px;height:28px}
     #cart-count{display:none;background:#ff3b30;color:#fff;font-size:12px;line-height:1;padding:3px 6px;border-radius:10px;margin-left:6px;min-width:18px;text-align:center}
 
-    .container { max-width: 1000px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-wrap: wrap; }
-    .side-image { flex: 1; padding: 20px; display: flex; align-items: center; justify-content: center; min-width: 300px; }
-    .side-image img { max-width: 100%; border-radius: 10px; }
-    .info { flex: 2; padding: 20px; min-width: 300px; }
-    .info h1 { margin-bottom: 15px; color: #222; }
-    .info p { margin-bottom: 10px; }
-    .btn { display: inline-block; background: #28a745; color: #fff; text-decoration: none; padding: 10px 15px; border-radius: 5px; margin: 5px 5px 0 0; }
-    .btn:hover { background-color: #218838; }
-    .btn.cart { background: #555; }
-    .btn.readmore { background: #8323dd; }
-    .btn.readmore:hover { background: #6e1bbb; }
-    .more-text { display: none; margin-top: 10px; white-space: pre-wrap; font-size: 14px; }
+    /* SEKCJE */
+    .container{
+      max-width:1000px;margin:40px auto;background:#fff;border-radius:10px;
+      box-shadow:0 4px 12px rgba(0,0,0,.1);overflow:hidden;display:flex;flex-wrap:wrap;
+      transition:box-shadow .25s ease;scroll-margin-top:120px;
+    }
+    .container.highlight,.container:target{box-shadow:0 0 0 3px #8323dd inset,0 6px 16px rgba(0,0,0,.18)}
+    .side-image{flex:1;padding:20px;display:flex;align-items:center;justify-content:center;min-width:300px}
+    .side-image img{max-width:100%;border-radius:10px}
+    .info{flex:2;padding:20px;min-width:300px}
+    .info h1{margin-bottom:15px;color:#222}
+    .info p{margin-bottom:10px}
 
-    @media(max-width: 768px) {
-      .nav-inner { flex-direction: column; gap: 10px; }
-      .nav-links { flex-direction: column; align-items: center; }
-      .container { flex-direction: column; }
-      .side-image { order: -1; }
+    .btn{display:inline-block;background:#28a745;color:#fff;text-decoration:none;padding:10px 15px;border-radius:5px;margin:5px 5px 0 0}
+    .btn:hover{background:#218838}
+    .btn.cart{background:#555}
+    .btn.readmore{background:#8323dd}
+    .btn.readmore:hover{background:#6e1bbb}
+    .more-text{display:none;margin-top:10px;white-space:pre-wrap;font-size:14px}
+
+    @media(max-width:768px){
+      .nav-inner{flex-direction:column;gap:10px}
+      .nav-links{flex-direction:column;align-items:center}
+      .container{flex-direction:column}
+      .side-image{order:-1}
     }
   </style>
 </head>
 <body>
 
-<nav id="navbar">
+<!-- NAVBAR (jak na index, ale z poprawną nazwą pliku) -->
+<nav>
   <div class="nav-inner">
-    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+    <a href="index.html" aria-label="Strona główna">
+      <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav">
+    </a>
     <div class="nav-links">
-      <div class="dropdown"><a href="#">Terraria</a><div class="dropdown-content">
-        <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
-        <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
-        <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
-        <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
-        <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
-        <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
-        <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
-      </div></div>
-      <div class="dropdown"><a href="#">Panele 3D</a><div class="dropdown-content"><a href="panel-skalny.html">Panel 3D – skała</a></div></div>
-      <div class="dropdown"><a href="#">Lasy</a><div class="dropdown-content">
-        <a href="#las-s">Las w słoiku – S</a>
-        <a href="#las-m">Las w słoiku – M</a>
-        <a href="#las-l">Las w słoiku – L</a>
-        <a href="#las-xl">Las w słoiku – XL</a>
-        <a href="#las-xxl">Las w słoiku – XXL</a>
-      </div></div>
-      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div></div>
-      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="customy.html">Customy</a></div></div>
-      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="doniczki.html">Doniczki</a></div></div>
-      <a href="b2b.html" style="color:white;">B2B</a>
+      <!-- TERRARIA -->
+      <div class="dropdown"><a href="#">Terraria</a>
+        <div class="dropdown-content">
+          <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+          <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+          <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+          <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+          <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+          <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+          <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+        </div>
+      </div>
+
+      <!-- PANELE 3D (NA TEJ SAMEJ STRONIE panele3d.html PRZEŁĄCZA PRODUKT) -->
+      <div class="dropdown"><a href="#">Panele 3D</a>
+        <div class="dropdown-content">
+          <a href="panele3d.html#skalny"   data-key="skalny">Panel 3D – skała</a>
+          <a href="panele3d.html#korzen"   data-key="korzen">Panel 3D – tropikalny korzeń</a>
+          <a href="panele3d.html#pustynia" data-key="pustynia">Panel 3D – pustynny klimat</a>
+        </div>
+      </div>
+
+      <!-- LASY -->
+      <div class="dropdown"><a href="#">Lasy</a>
+        <div class="dropdown-content">
+          <a href="lasy.html#s">Las w słoiku – S</a>
+          <a href="lasy.html#m">Las w słoiku – M</a>
+          <a href="lasy.html#l">Las w słoiku – L</a>
+          <a href="lasy.html#xl">Las w słoiku – XL</a>
+          <a href="lasy.html#xxl">Las w słoiku – XXL</a>
+        </div>
+      </div>
+
+      <div class="dropdown"><a href="#">Greenwall</a>
+        <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Customy</a>
+        <div class="dropdown-content"><a href="customy.html">Customy</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Doniczki</a>
+        <div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div>
+      </div>
+
+      <a href="b2b.html" style="color:#fff;">B2B</a>
+
+      <!-- Ikona koszyka + licznik -->
       <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -82,86 +127,154 @@
   </div>
 </nav>
 
-<!-- Rozmiar S -->
-<div class="container" id="las-s">
+
+<!-- PRODUKTY -->
+<div class="container" id="s">
   <div class="info">
     <h1>Las w słoiku – rozmiar S</h1>
     <p>Mały słoik z mchem i pojedynczą rośliną – idealny na biurko lub w prezencie.</p>
-    <button class="btn readmore" onclick="toggleMore('s')">Czytaj więcej</button>
+    <button class="btn readmore" onclick="toggleMore('more-s')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart" onclick="addToCart('Las w słoiku – S', 59)">Dodaj do koszyka</button>
-    <div class="more-text" id="s">Pełny opis dla rozmiaru S...</div>
+    <div class="more-text" id="more-s">Pełny opis dla rozmiaru S...</div>
   </div>
-  <div class="side-image"><img src="images/las.jpg" alt="Las S"></div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las S" /></div>
 </div>
 
-<!-- Rozmiar M -->
-<div class="container" id="las-m">
+<div class="container" id="m">
   <div class="info">
     <h1>Las w słoiku – rozmiar M</h1>
     <p>Klasyczna kompozycja z warstwami mchu, kamieni i kilku roślin.</p>
-    <button class="btn readmore" onclick="toggleMore('m')">Czytaj więcej</button>
+    <button class="btn readmore" onclick="toggleMore('more-m')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart" onclick="addToCart('Las w słoiku – M', 89)">Dodaj do koszyka</button>
-    <div class="more-text" id="m">Pełny opis dla rozmiaru M...</div>
+    <div class="more-text" id="more-m">Pełny opis dla rozmiaru M...</div>
   </div>
-  <div class="side-image"><img src="images/las.jpg" alt="Las M"></div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las M" /></div>
 </div>
 
-<!-- Rozmiar L -->
-<div class="container" id="las-l">
+<div class="container" id="l">
   <div class="info">
     <h1>Las w słoiku – rozmiar L</h1>
     <p>Rozbudowana kompozycja z większą ilością roślin i strukturą przestrzenną.</p>
-    <button class="btn readmore" onclick="toggleMore('l')">Czytaj więcej</button>
+    <button class="btn readmore" onclick="toggleMore('more-l')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart" onclick="addToCart('Las w słoiku – L', 129)">Dodaj do koszyka</button>
-    <div class="more-text" id="l">Pełny opis dla rozmiaru L...</div>
+    <div class="more-text" id="more-l">Pełny opis dla rozmiaru L...</div>
   </div>
-  <div class="side-image"><img src="images/las.jpg" alt="Las L"></div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las L" /></div>
 </div>
 
-<!-- Rozmiar XL -->
-<div class="container" id="las-xl">
+<div class="container" id="xl">
   <div class="info">
     <h1>Las w słoiku – rozmiar XL</h1>
     <p>Duża kompozycja z większymi roślinami i dodatkami – robi wrażenie!</p>
-    <button class="btn readmore" onclick="toggleMore('xl')">Czytaj więcej</button>
+    <button class="btn readmore" onclick="toggleMore('more-xl')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart" onclick="addToCart('Las w słoiku – XL', 179)">Dodaj do koszyka</button>
-    <div class="more-text" id="xl">Pełny opis dla rozmiaru XL...</div>
+    <div class="more-text" id="more-xl">Pełny opis dla rozmiaru XL...</div>
   </div>
-  <div class="side-image"><img src="images/las.jpg" alt="Las XL"></div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las XL" /></div>
 </div>
 
-<!-- Rozmiar XXL -->
-<div class="container" id="las-xxl">
+<div class="container" id="xxl">
   <div class="info">
     <h1>Las w słoiku – rozmiar XXL / terrarium</h1>
     <p>Prawdziwe, duże terrarium roślinne – także w zabudowie z LED i dekoracjami.</p>
-    <button class="btn readmore" onclick="toggleMore('xxl')">Czytaj więcej</button>
+    <button class="btn readmore" onclick="toggleMore('more-xxl')">Czytaj więcej</button>
     <a href="#" class="btn">Kup teraz</a>
     <button class="btn cart" onclick="addToCart('Las w słoiku – XXL', 249)">Dodaj do koszyka</button>
-    <div class="more-text" id="xxl">Pełny opis dla rozmiaru XXL...</div>
+    <div class="more-text" id="more-xxl">Pełny opis dla rozmiaru XXL...</div>
   </div>
-  <div class="side-image"><img src="images/las.jpg" alt="Las XXL"></div>
+  <div class="side-image"><img src="images/las.jpg" alt="Las XXL" /></div>
 </div>
 
 <script>
-  function toggleMore(id) {
+  const NAV_OFFSET = 120;
+
+  function toggleMore(id){
     const el = document.getElementById(id);
-    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 
-  /* Wspólny skrypt koszyka */
-  (function(){
-    const KEY='cart';
-    function load(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){localStorage.removeItem(KEY);return[];} }
-    function save(c){ localStorage.setItem(KEY, JSON.stringify(c)); updateBadge(c); }
-    function updateBadge(c=load()){ const b=document.getElementById('cart-count'); if(!b) return; const n=c.reduce((a,i)=>a+(i.quantity||1),0); if(n>0){b.textContent=n;b.style.display='inline-block';} else {b.style.display='none';} }
-    window.addToCart=function(name,price){ const c=load(); const ex=c.find(i=>i.name===name&&i.price===price); if(ex){ex.quantity=(ex.quantity||1)+1;} else {c.push({name,price:Number(price),quantity:1});} save(c); alert(name+' dodano do koszyka!'); };
-    document.addEventListener('DOMContentLoaded',updateBadge);
-  })();
+  function addToCart(name, price){
+    let cart = [];
+    try{ cart = JSON.parse(localStorage.getItem('cart')) || []; }catch(e){ localStorage.removeItem('cart'); }
+    const i = cart.findIndex(x => x.name===name && Number(x.price)===Number(price));
+    if(i>-1) cart[i].quantity = (cart[i].quantity||1)+1;
+    else cart.push({name, price, quantity:1});
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateBadge(cart);
+    alert(name+' dodano do koszyka!');
+  }
+
+  function updateBadge(cart){
+    const badge = document.getElementById('cart-count');
+    if(!badge) return;
+    try{ cart = cart || JSON.parse(localStorage.getItem('cart')) || []; }catch(e){ cart = []; }
+    const n = cart.reduce((a,i)=>a+(i.quantity||1),0);
+    if(n>0){ badge.textContent=n; badge.style.display='inline-block'; }
+    else{ badge.style.display='none'; }
+  }
+
+  function jumpTo(id, smooth=true){
+    const box = document.getElementById(id);
+    if(!box) return;
+
+    // ręczny scroll z offsetem (niezależny od natywnego zachowania przeglądarki)
+    const y = box.getBoundingClientRect().top + window.pageYOffset - NAV_OFFSET;
+    window.scrollTo({ top:y, behavior: smooth ? 'smooth' : 'auto' });
+
+    // podświetlenie i auto „czytaj więcej”
+    box.classList.add('highlight');
+    setTimeout(()=>box.classList.remove('highlight'), 1200);
+    const more = document.getElementById('more-'+id);
+    if(more) more.style.display = 'block';
+
+    // ustaw hash bez przeładowania (żeby link dało się skopiować)
+    if(location.hash !== '#'+id){
+      history.replaceState(null,'','#'+id);
+    }
+  }
+
+  // 1) Po wejściu z innej strony (hash w URL)
+  document.addEventListener('DOMContentLoaded', ()=>{
+    updateBadge();
+
+    if(location.hash){
+      // Zabezpieczenie: przewiń ręcznie (część przeglądarek „chowa” pod sticky)
+      setTimeout(()=>jumpTo(location.hash.slice(1), false), 0);
+    }
+
+    // 2) „Kulooodporna” obsługa dropdownu LASY na TEJ SAMEJ STRONIE
+    //    Zamieniamy href na #id i zawsze przewijamy z offsetem.
+    document.querySelectorAll('.dropdown-content a').forEach(a=>{
+      const href = a.getAttribute('href') || '';
+      const url = new URL(href, location.href);
+      const sameFile =
+        url.origin === location.origin &&
+        decodeURIComponent(url.pathname) === decodeURIComponent(location.pathname);
+
+      // tylko linki, które wskazują na ten sam plik (las-sloik-2l.html)
+      if(sameFile && url.hash){
+        const id = url.hash.slice(1);
+        // nadpisz href na czysty hash – unikamy przeładowania
+        a.setAttribute('href', '#'+id);
+        a.addEventListener('click', (e)=>{
+          e.preventDefault();
+          // zawsze przewiń (nawet jeśli hash się nie zmienia)
+          jumpTo(id, true);
+        });
+      }
+    });
+  });
+
+  // 3) Gdy hash zmieni się ręcznie lub przez inne skrypty
+  window.addEventListener('hashchange', ()=>{
+    const id = (location.hash||'').slice(1);
+    if(id) jumpTo(id, true);
+  });
 </script>
+
 </body>
 </html>

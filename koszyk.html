@@ -55,8 +55,11 @@
 <!-- NAVBAR -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html"><img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav"></a>
+    <a href="index.html" aria-label="Strona główna">
+      <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav">
+    </a>
     <div class="nav-links">
+      <!-- TERRARIA -->
       <div class="dropdown"><a href="#">Terraria</a>
         <div class="dropdown-content">
           <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
@@ -68,26 +71,42 @@
           <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
         </div>
       </div>
+
+      <!-- PANELE 3D (NA TEJ SAMEJ STRONIE panele3d.html PRZEŁĄCZA PRODUKT) -->
       <div class="dropdown"><a href="#">Panele 3D</a>
         <div class="dropdown-content">
-          <a href="panel-skalny.html">Panel 3D – skała</a>
-          <a href="panel-korzen.html">Panel 3D – tropikalny korzeń</a>
-          <a href="panel-pustynia.html">Panel 3D – pustynny klimat</a>
+          <a href="panele3d.html#skalny"   data-key="skalny">Panel 3D – skała</a>
+          <a href="panele3d.html#korzen"   data-key="korzen">Panel 3D – tropikalny korzeń</a>
+          <a href="panele3d.html#pustynia" data-key="pustynia">Panel 3D – pustynny klimat</a>
         </div>
       </div>
+
+      <!-- LASY -->
       <div class="dropdown"><a href="#">Lasy</a>
         <div class="dropdown-content">
-          <a href="lasy.html#las-s">Las w słoiku – S</a>
-          <a href="lasy.html#las-m">Las w słoiku – M</a>
-          <a href="lasy.html#las-l">Las w słoiku – L</a>
-          <a href="lasy.html#las-xl">Las w słoiku – XL</a>
-          <a href="lasy.html#las-xxl">Las w słoiku – XXL</a>
+          <a href="lasy.html#s">Las w słoiku – S</a>
+          <a href="lasy.html#m">Las w słoiku – M</a>
+          <a href="lasy.html#l">Las w słoiku – L</a>
+          <a href="lasy.html#xl">Las w słoiku – XL</a>
+          <a href="lasy.html#xxl">Las w słoiku – XXL</a>
         </div>
       </div>
-      <div class="dropdown"><a href="#">Greenwall</a><div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div></div>
-      <div class="dropdown"><a href="#">Customy</a><div class="dropdown-content"><a href="customy.html">Customy</a></div></div>
-      <div class="dropdown"><a href="#">Doniczki</a><div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div></div>
+
+      <div class="dropdown"><a href="#">Greenwall</a>
+        <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Customy</a>
+        <div class="dropdown-content"><a href="customy.html">Customy</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Doniczki</a>
+        <div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div>
+      </div>
+
       <a href="b2b.html" style="color:#fff;">B2B</a>
+
+      <!-- Ikona koszyka + licznik -->
       <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -100,6 +119,7 @@
     </div>
   </div>
 </nav>
+
 
 <div class="wrap">
   <h1>Twój koszyk</h1>

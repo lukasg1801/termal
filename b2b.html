@@ -103,50 +103,73 @@
 <body>
 
 <nav id="navbar">
-  <div class="dropdown"><a href="#">Terraria</a>
-    <div class="dropdown-content">
-      <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
-      <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
-      <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
-      <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
-      <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
-      <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
-      <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+  <nav>
+  <div class="nav-inner">
+    <a href="index.html" aria-label="Strona główna">
+      <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo-nav">
+    </a>
+    <div class="nav-links">
+      <!-- TERRARIA -->
+      <div class="dropdown"><a href="#">Terraria</a>
+        <div class="dropdown-content">
+          <a href="terrarium.html#terrarium60">Terrarium 60x40x40 cm</a>
+          <a href="terrarium.html#terrarium80">Terrarium 80x40x40 cm</a>
+          <a href="terrarium.html#terrarium100">Terrarium 100x50x50 cm</a>
+          <a href="terrarium.html#terrarium120">Terrarium 120x50x50 cm</a>
+          <a href="terrarium.html#terrarium4060">Terrarium 40x40x60 cm</a>
+          <a href="terrarium.html#terrarium4080">Terrarium 40x40x80 cm</a>
+          <a href="terrarium.html#terrariumXL">Terrarium 50x50x100 cm – XL</a>
+        </div>
+      </div>
+
+      <!-- PANELE 3D (NA TEJ SAMEJ STRONIE panele3d.html PRZEŁĄCZA PRODUKT) -->
+      <div class="dropdown"><a href="#">Panele 3D</a>
+        <div class="dropdown-content">
+          <a href="panele3d.html#skalny"   data-key="skalny">Panel 3D – skała</a>
+          <a href="panele3d.html#korzen"   data-key="korzen">Panel 3D – tropikalny korzeń</a>
+          <a href="panele3d.html#pustynia" data-key="pustynia">Panel 3D – pustynny klimat</a>
+        </div>
+      </div>
+
+      <!-- LASY -->
+      <div class="dropdown"><a href="#">Lasy</a>
+        <div class="dropdown-content">
+          <a href="lasy.html#s">Las w słoiku – S</a>
+          <a href="lasy.html#m">Las w słoiku – M</a>
+          <a href="lasy.html#l">Las w słoiku – L</a>
+          <a href="lasy.html#xl">Las w słoiku – XL</a>
+          <a href="lasy.html#xxl">Las w słoiku – XXL</a>
+        </div>
+      </div>
+
+      <div class="dropdown"><a href="#">Greenwall</a>
+        <div class="dropdown-content"><a href="greenwall.html">Greenwall</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Customy</a>
+        <div class="dropdown-content"><a href="customy.html">Customy</a></div>
+      </div>
+
+      <div class="dropdown"><a href="#">Doniczki</a>
+        <div class="dropdown-content"><a href="doniczki.html">Doniczka skałopodobna</a></div>
+      </div>
+
+      <a href="b2b.html" style="color:#fff;">B2B</a>
+
+      <!-- Ikona koszyka + licznik -->
+      <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
+        </svg>
+        <span id="cart-count">0</span>
+      </a>
     </div>
   </div>
-  <div class="dropdown"><a href="#">Panele 3D</a>
-    <div class="dropdown-content">
-      <a href="panel-skalny.html">Panel 3D – skała</a>
-      <a href="panel-korzen.html">Panel 3D – tropikalny korzeń</a>
-      <a href="panel-pustynia.html">Panel 3D – pustynny klimat</a>
-    </div>
-  </div>
-  <div class="dropdown"><a href="#">Lasy</a>
-    <div class="dropdown-content">
-      <a href="las-s.html">Las w słoiku – rozmiar S</a>
-      <a href="las-m.html">Las w słoiku – rozmiar M</a>
-      <a href="las-l.html">Las w słoiku – rozmiar L</a>
-      <a href="las-xl.html">Las w słoiku – rozmiar XL</a>
-      <a href="las-xxl.html">Las w słoiku – rozmiar XXL</a>
-    </div>
-  </div>
-  <div class="dropdown"><a href="#">Greenwall</a>
-    <div class="dropdown-content">
-      <a href="greenwall.html">Greenwall</a>
-    </div>
-  </div>
-  <div class="dropdown"><a href="#">Customy</a>
-    <div class="dropdown-content">
-      <a href="customy.html">Customy</a>
-    </div>
-  </div>
-  <div class="dropdown"><a href="#">Doniczki</a>
-    <div class="dropdown-content">
-      <a href="doniczki.html">Doniczka skałopodobna mini</a>
-    </div>
-  </div>
-  <a href="b2b.html">B2B</a>
 </nav>
+
 
 <header>
   <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo">
