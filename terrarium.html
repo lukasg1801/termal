@@ -1,23 +1,210 @@
+<!-- ====== terrarium.html ====== -->
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Terrarium drewniane 60x40x60</title>
+  <title>Terraria drewniane – Terrmal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; }
-    h1 { color: #222; }
-    a.btn { display: inline-block; margin-top: 20px; background: #66aa66; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    :root{--brand:#8323dd;--nav-h:76px;--glass-bg:rgba(255,255,255,0.55);--mega-bottom-bar:64px;}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Moon Kids',Arial,sans-serif;background:#f4f4f4;color:#333}
+    html{scroll-behavior:smooth}
+
+    /* ===== NAVBAR ===== */
+    nav.terr-nav{position:sticky;top:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:center;background:rgba(131,35,221,.9);backdrop-filter:saturate(140%) blur(6px)}
+    .terr-nav .inner{width:92%;max-width:1200px;display:flex;align-items:center;justify-content:space-between}
+    .terr-nav .brand{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none}
+    .terr-nav .brand img{height:54px;border-radius:6px}
+    .terr-nav .txt{display:flex;flex-direction:column}
+    .terr-nav .txt strong{font-size:16px}
+    .terr-nav .txt .tagline{font-size:12px;opacity:.9}
+    .terr-nav .links{display:flex;align-items:center;gap:26px}
+    .terr-nav .links a,.terr-nav .links button{color:#fff;font-weight:700;font-size:14px;text-transform:uppercase;background:none;border:0;cursor:pointer}
+    .cart-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none}
+    .cart-link svg{width:26px;height:26px}
+    #cart-count{display:none;background:#ff3b30;color:#fff;font-size:12px;padding:3px 6px;border-radius:10px;margin-left:6px}
+
+    /* ===== MEGA DROPDOWN ===== */
+    .mega-backdrop{position:fixed;left:0;right:0;top:var(--nav-h);background:var(--glass-bg);backdrop-filter:blur(14px) saturate(140%);opacity:0;transform:translateY(-8px);transition:.25s;pointer-events:none;z-index:999}
+    .mega-backdrop.active{opacity:1;transform:none;pointer-events:auto}
+    .mega-backdrop::after{content:"";display:block;height:var(--mega-bottom-bar);background:var(--glass-bg);backdrop-filter:blur(16px) saturate(140%);border-top:1px solid rgba(255,255,255,.3)}
+    .mega-content{max-width:1200px;margin:0 auto;padding:22px 4% 28px;display:none}
+    .mega-content.active{display:block}
+    .mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .mega-col h4{margin:0 0 10px;color:#222;font-size:14px;text-transform:uppercase}
+    .mega-col a{display:block;color:#222;text-decoration:none;padding:7px 8px;border-radius:8px}
+    .mega-col a:hover{background:rgba(131,35,221,.08)}
+
+    /* ===== SEKCJE PRODUKTÓW ===== */
+    .section{padding:40px 20px;max-width:1200px;margin:auto}
+    .product{background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-bottom:30px;overflow:hidden;display:flex;flex-wrap:wrap}
+    .product img{width:100%;max-width:400px;object-fit:cover}
+    .info{flex:1;padding:20px}
+    .info h2{margin-bottom:10px;color:#222}
+    .price{font-weight:bold;margin-bottom:15px;color:#8323dd}
+    .btn{display:inline-block;margin-top:10px;padding:10px 16px;background:#8323dd;color:#fff;text-decoration:none;border-radius:6px;font-weight:bold}
+    .btn:hover{opacity:.9}
+    footer{background:#222;color:#ccc;text-align:center;padding:20px}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Terrarium drewniane 60x40x60</h1>
-    <img src="images/terrarium.jpg" alt="Terrarium drewniane 60x40x60">
-    <p>Obudowa z płyty meblowej, tło skalne, oświetlenie LED. Idealne dla gadów i płazów. W pełni wentylowane i estetyczne.</p>
-    <a class="btn" href="index.html">← Powrót na stronę główną</a>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="terr-nav">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <img src="images/terrmalllogo.jpg" alt="Terrmal">
+      <div class="txt"><strong>Terrmal</strong><span class="tagline">Natura w Twoim wnętrzu</span></div>
+    </a>
+    <div class="links">
+      <button class="mega-trigger" data-mega="terraria">Terraria</button>
+      <button class="mega-trigger" data-mega="panele">Panele 3D</button>
+      <button class="mega-trigger" data-mega="lasy">Lasy</button>
+      <a href="customy.html">Customy</a>
+      <a href="b2b.html">B2B</a>
+      <a href="koszyk.html" class="cart-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"/></svg>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
   </div>
+</nav>
+
+<!-- ===== MEGA MENU ===== -->
+<div id="mega" class="mega-backdrop">
+  <!-- TERRARIA -->
+  <div class="mega-content" data-panel="terraria"><div class="mega-grid">
+    <div class="mega-col"><h4>Poziome</h4>
+      <a href="terrarium.html#terrarium60">Terrarium 60×45×45</a>
+      <a href="terrarium.html#terrarium80">Terrarium 80×45×45</a>
+      <a href="terrarium.html#terrarium100">Terrarium 100×50×50</a>
+      <a href="terrarium.html#terrarium120">Terrarium 120×50×50</a>
+    </div>
+    <div class="mega-col"><h4>Wysokie</h4>
+      <a href="terrarium.html#terrarium4060">45×45×60</a>
+      <a href="terrarium.html#terrarium4080">45×45×80</a>
+      <a href="terrarium.html#terrariumXL">50×50×100</a>
+    </div>
+    <div class="mega-col"><h4>Popularne</h4>
+      <a href="panele3d.html">Panele 3D</a><a href="customy.html">Wycena custom</a><a href="b2b.html">Współpraca B2B</a>
+    </div>
+  </div></div>
+
+  <!-- PANELE -->
+  <div class="mega-content" data-panel="panele"><div class="mega-grid">
+    <div class="mega-col"><h4>Style</h4><a href="panele3d.html#skalny">Skała</a><a href="panele3d.html#korzen">Korzeń</a><a href="panele3d.html#pustynia">Pustynia</a></div>
+    <div class="mega-col"><h4>Zastosowania</h4><a href="panel-skalny.html#interior">Ściany</a><a href="panel-skalny.html#terraria">Terraria</a></div>
+    <div class="mega-col"><h4>Wsparcie</h4><a href="customy.html">Projekt</a><a href="b2b.html">Hurt</a></div>
+  </div></div>
+
+  <!-- LASY -->
+  <div class="mega-content" data-panel="lasy"><div class="mega-grid">
+    <div class="mega-col"><h4>Rozmiary</h4><a href="lasy.html#s">S</a><a href="lasy.html#m">M</a><a href="lasy.html#l">L</a><a href="lasy.html#xl">XL</a><a href="lasy.html#xxl">XXL</a></div>
+    <div class="mega-col"><h4>Na prezent</h4><a href="lasy.html#s">Zestaw</a><a href="customy.html">Grawer</a></div>
+  </div></div>
+</div>
+
+<!-- ===== TREŚĆ STRONY ===== -->
+<section class="section" id="terrarium60">
+  <div class="product">
+    <img src="images/terrarium60.jpg" alt="Terrarium 60x45x45">
+    <div class="info">
+      <h2>Terrarium 60×45×45</h2>
+      <p>Kompaktowe terrarium do mniejszych gatunków gadów i płazów. Wykonane z płyty meblowej, z przeszklonym frontem.</p>
+      <div class="price">Cena: 399 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrarium80">
+  <div class="product">
+    <img src="images/terrarium80.jpg" alt="Terrarium 80x45x45">
+    <div class="info">
+      <h2>Terrarium 80×45×45</h2>
+      <p>Najbardziej uniwersalny rozmiar – idealny dla gekonów orzęsionych. Estetyczne wykończenie, solidna konstrukcja.</p>
+      <div class="price">Cena: 499 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrarium100">
+  <div class="product">
+    <img src="images/terrarium100.jpg" alt="Terrarium 100x50x50">
+    <div class="info">
+      <h2>Terrarium 100×50×50</h2>
+      <p>Większe terrarium do średnich gadów. Możliwość zabudowy tłem skalnym i dodatkowymi półkami.</p>
+      <div class="price">Cena: 699 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrarium120">
+  <div class="product">
+    <img src="images/terrarium120.jpg" alt="Terrarium 120x50x50">
+    <div class="info">
+      <h2>Terrarium 120×50×50</h2>
+      <p>Największy model poziomy – dużo przestrzeni i idealne do efektownych aranżacji.</p>
+      <div class="price">Cena: 899 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrarium4060">
+  <div class="product">
+    <img src="images/terrarium4060.jpg" alt="Terrarium 45x45x60">
+    <div class="info">
+      <h2>Terrarium 45×45×60</h2>
+      <p>Wysokie terrarium – idealne dla gatunków nadrzewnych. Świetne do aranżacji pionowych.</p>
+      <div class="price">Cena: 499 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrarium4080">
+  <div class="product">
+    <img src="images/terrarium4080.jpg" alt="Terrarium 45x45x80">
+    <div class="info">
+      <h2>Terrarium 45×45×80</h2>
+      <p>Wysokie terrarium XL – efektowna przestrzeń do hodowli i dekoracji.</p>
+      <div class="price">Cena: 649 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="terrariumXL">
+  <div class="product">
+    <img src="images/terrariumXL.jpg" alt="Terrarium 50x50x100">
+    <div class="info">
+      <h2>Terrarium 50×50×100</h2>
+      <p>Terrarium XXL dla wymagających – najwyższa jakość i przestrzeń dla dużych aranżacji.</p>
+      <div class="price">Cena: 899 zł</div>
+      <a href="koszyk.html" class="btn">Dodaj do koszyka</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Terrmal. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+  const mega=document.getElementById('mega'),triggers=document.querySelectorAll('.mega-trigger'),panels=document.querySelectorAll('.mega-content');let openName=null;
+  function openMega(n){if(openName===n){closeMega();return}openName=n;mega.classList.add('active');panels.forEach(p=>p.classList.toggle('active',p.dataset.panel===n))}
+  function closeMega(){openName=null;mega.classList.remove('active');panels.forEach(p=>p.classList.remove('active'))}
+  triggers.forEach(b=>{const n=b.dataset.mega;b.addEventListener('mouseenter',()=>openMega(n));b.addEventListener('click',e=>{e.preventDefault();openMega(n)})})
+  mega.addEventListener('mouseleave',closeMega);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMega()});window.addEventListener('scroll',closeMega)
+
+  function updateBadge(){const b=document.getElementById('cart-count');let c=[];try{c=JSON.parse(localStorage.getItem('cart'))||[]}catch(e){c=[]}
+    const n=c.reduce((a,i)=>a+(i.quantity||1),0);if(n>0){b.textContent=n;b.style.display='inline-block'}else b.style.display='none'}
+  document.addEventListener('DOMContentLoaded',updateBadge);window.addEventListener('storage',updateBadge)
+</script>
 </body>
 </html>

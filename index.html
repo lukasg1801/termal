@@ -1,89 +1,448 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Terrmal - Natura w Twoim wnętrzu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Kids&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
-    header { background: #8020da; color: #fff; padding: 20px; text-align: center; } /* Zmieniony kolor tła nagłówka */
-    nav a { margin: 0 15px; color: #fff; text-decoration: none; font-weight: bold; }
-    .section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    .products { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .product { background: white; border-radius: 10px; padding: 20px; width: 280px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease; }
-    .product:hover { transform: scale(1.03); }
-    .product img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
-    .btn { background: #66aa66; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
-    footer p { margin: 5px; font-size: 0.8em; }
-    .logo { max-width: 120px; }
+    :root{
+      --brand:#8323dd;
+      --nav-h:76px;
+      --glass-bg:rgba(255,255,255,0.55);
+      --mega-bottom-bar: 64px; /* powiększony rozmyty pasek u dołu dropdownu */
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Moon Kids', Arial, sans-serif;background:#f4f4f4;color:#333}
+
+    /* ===== NAV (Apple-like) ===== */
+    nav.terr-nav{
+      position:sticky; top:0; z-index:1000; height:var(--nav-h);
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(131,35,221,0.90);
+      backdrop-filter:saturate(140%) blur(6px);
+      -webkit-backdrop-filter:saturate(140%) blur(6px);
+    }
+    .terr-nav .inner{
+      width:92%; max-width:1200px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .terr-nav .brand{display:flex; align-items:center; gap:14px; color:#fff; text-decoration:none;}
+    .terr-nav .brand img{height:54px; width:auto; border-radius:6px; display:block}
+    .terr-nav .brand .txt{display:flex; flex-direction:column}
+    .terr-nav .brand .txt strong{font-size:16px; line-height:1}
+    .terr-nav .brand .txt .tagline{font-size:12px; line-height:1; opacity:.9; margin-top:2px}
+
+    .terr-nav .links{display:flex; align-items:center; gap:26px; flex-wrap:wrap}
+    .terr-nav .links a,
+    .terr-nav .links button{
+      color:#fff; text-decoration:none; font-weight:700; font-size:14px; letter-spacing:.4px; text-transform:uppercase;
+      background:none; border:0; cursor:pointer; padding:6px 2px;
+    }
+    .terr-nav .links a:hover,
+    .terr-nav .links button:hover{opacity:.9}
+
+    /* Ikona koszyka */
+    .cart-link{display:inline-flex; align-items:center; gap:6px; color:#fff; text-decoration:none}
+    .cart-link svg{width:26px; height:26px}
+    #cart-count{display:none; min-width:18px; padding:3px 6px; border-radius:10px; line-height:1;
+      background:#ff3b30; color:#fff; font-size:12px; text-align:center}
+
+    /* ===== FULL-WIDTH Mega Dropdown ===== */
+    .mega-backdrop{
+      position:fixed; left:0; right:0; top:var(--nav-h);
+      background:var(--glass-bg);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom:1px solid rgba(255,255,255,0.35);
+      box-shadow:0 12px 30px rgba(0,0,0,.12);
+      opacity:0; transform: translateY(-8px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events:none; z-index:999;
+    }
+    .mega-backdrop.active{opacity:1; transform:none; pointer-events:auto;}
+
+    /* powiększony rozmyty pasek u dołu */
+    .mega-backdrop::after{
+      content:""; display:block; height:var(--mega-bottom-bar);
+      background:var(--glass-bg);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border-top:1px solid rgba(255,255,255,0.3);
+    }
+
+    .mega-content{max-width:1200px; margin:0 auto; padding:22px 4% 28px; display:none;}
+    .mega-content.active{display:block;}
+    .mega-grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:26px;}
+    .mega-col h4{margin:0 0 10px; color:#222; font-size:14px; text-transform:uppercase; letter-spacing:.6px}
+    .mega-col a{display:block; color:#222; text-decoration:none; padding:7px 8px; border-radius:8px;}
+    .mega-col a:hover{background:rgba(131,35,221,.08)}
+
+    /* ===== Header (logo hero) ===== */
+    header{
+      background:#8323dd; color:white; text-align:center; padding:50px 20px;
+    }
+    header .logo{max-width:200px; width:100%; height:auto; display:block; margin:0 auto 10px;}
+    header .slogan{font-size:18px; opacity:.95}
+
+    /* ===== Sekcje (jak wcześniej) ===== */
+    .section{background-image:url('images/tło.png'); background-size:cover; background-position:center; background-repeat:no-repeat; padding:0; margin:0;}
+    .image-section{width:100%; height:600px; background-size:cover; background-position:center; background-attachment:fixed;}
+    .products{padding:40px 20px; max-width:1000px; margin:auto;}
+    .product{
+      background:#8323dd; border-radius:10px; width:100%; max-width:320px; box-shadow:0 0 10px rgba(0,0,0,0.1);
+      text-align:center; transition:transform .3s ease; margin:0 auto; cursor:pointer; overflow:hidden; color:white;
+    }
+    .product:hover{transform:scale(1.03);}
+    .product img{width:100%; height:200px; object-fit:cover; border-radius:5px;}
+    .product h3{padding:10px 0; margin:0; font-size:1.2em; color:#fff;}
+    .product a{
+      display:inline-block; margin:10px 0 20px; padding:10px 15px; background:#ffffff; color:#2c0055; text-decoration:none;
+      border-radius:5px; text-transform:uppercase; font-weight:bold;
+    }
+    .product a:hover{background:#f4f4f4; color:#2c0055; border:1px solid #2c0055;}
+
+    footer{background:#222; color:#ccc; text-align:center; padding:20px 10px; font-size:.9em;}
+
+    /* ===== Slider: Bestsellery ===== */
+    .bestsellery{
+      background:#fff; padding:40px 0 30px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+    }
+    .bestsellery .wrap{max-width:1200px; margin:0 auto; padding:0 20px;}
+    .bestsellery h2{font-size:2em; margin-bottom:16px; color:#222}
+    .slider{
+      position:relative; overflow:hidden;
+    }
+    .track{
+      display:flex; gap:20px; overflow:auto; scroll-behavior:smooth; scroll-snap-type:x mandatory; padding-bottom:10px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .track::-webkit-scrollbar{height:8px}
+    .track::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2); border-radius:8px}
+    .slide{
+      flex:0 0 280px; scroll-snap-align:center; background:#f7f3fb; border:1px solid rgba(131,35,221,.15);
+      border-radius:12px; padding:14px; text-align:center;
+    }
+    .slide img{width:100%; height:180px; object-fit:cover; border-radius:8px}
+    .slide h3{font-size:1rem; margin:10px 0 6px; color:#2c0055}
+    .slide a.btn{
+      display:inline-block; margin-top:6px; padding:8px 12px; background:#8323dd; color:#fff; border-radius:6px; text-decoration:none; font-weight:700;
+    }
+    .slide a.btn:hover{opacity:.9}
+
+    .nav-btn{
+      position:absolute; top:50%; transform:translateY(-50%); border:none; background:#8323dd; color:#fff; width:38px; height:38px;
+      border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 16px rgba(131,35,221,.35);
+    }
+    .nav-btn:hover{filter:brightness(.95)}
+    .nav-btn.prev{left:0}
+    .nav-btn.next{right:0}
+
+    @media (max-width: 900px){
+      .nav-btn{display:none}
+      .image-section{height:420px}
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" alt="Terrmal Logo" class="logo"> <!-- Miejsce na logo -->
-    <h1>Terrmal</h1>
-    <p>Natura w Twoim wnętrzu</p>
-    <nav>
-      <a href="#produkty">Produkty</a>
-      <a href="#onas">O nas</a> <!-- Zakładka O nas -->
-      <a href="#personalizacja">Personalizacja</a> <!-- Zakładka Personalizacja -->
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-  </header>
 
-  <section id="produkty" class="section">
-    <h2>Nasze produkty</h2>
-    <div class="products">
-      <div class="product">
-        <a href="terrarium.html"><img src="images/terrarium.jpg" alt="Terrarium drewniane 60x40x60"></a>
-        <h3>Terrarium drewniane 60x40x60</h3>
-        <a class="btn" href="terrarium.html">Zobacz więcej</a>
+<!-- ===== NAV ===== -->
+<nav class="terr-nav" role="navigation" aria-label="Główna nawigacja">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <img src="images/terrmalllogo.jpg" alt="Terrmal">
+      <div class="txt">
+        <strong>Terrmal</strong>
+        <span class="tagline">Natura w Twoim wnętrzu</span>
       </div>
-      <div class="product">
-        <a href="terrarium-szklane.html"><img src="images/glass.jpg" alt="Terrarium szklane z tłem 40x40x50"></a>
-        <h3>Terrarium szklane z tłem 40x40x50</h3>
-        <a class="btn" href="terrarium-szklane.html">Zobacz więcej</a>
+    </a>
+
+    <div class="links">
+      <button type="button" class="mega-trigger" data-mega="terraria">Terraria</button>
+      <button type="button" class="mega-trigger" data-mega="panele">Panele 3D</button>
+      <button type="button" class="mega-trigger" data-mega="lasy">Lasy</button>
+      <a href="customy.html">Customy</a>
+      <a href="b2b.html" style="color:#fff;">B2B</a>
+
+      <a href="koszyk.html" class="cart-link" aria-label="Koszyk" title="Koszyk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.6-8.39H6"></path>
+        </svg>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== MEGA DROPDOWN ===== -->
+<div id="mega" class="mega-backdrop" aria-hidden="true">
+  <!-- TERRARIA -->
+  <div class="mega-content" data-panel="terraria" role="menu" aria-label="Terraria">
+    <div class="mega-grid">
+      <div class="mega-col">
+        <h4>Poziome</h4>
+        <a href="terrarium.html#terrarium60">Terrarium 60×45×45</a>
+        <a href="terrarium.html#terrarium80">Terrarium 80×45×45</a>
+        <a href="terrarium.html#terrarium100">Terrarium 100×50×50</a>
+        <a href="terrarium.html#terrarium120">Terrarium 120×50×50</a>
       </div>
-      <div class="product">
-        <a href="las-sloik-2l.html"><img src="images/las.jpg" alt="Las w słoiku 2L"></a>
-        <h3>Las w słoiku 2L</h3>
-        <a class="btn" href="las-sloik-2l.html">Zobacz więcej</a>
+      <div class="mega-col">
+        <h4>Wysokie</h4>
+        <a href="terrarium.html#terrarium4060">45×45×60 (wysokie)</a>
+        <a href="terrarium.html#terrarium4080">45×45×80</a>
+        <a href="terrarium.html#terrariumXL">50×50×100 – </a>
       </div>
-      <div class="product">
-        <a href="las-sloik-5l.html"><img src="images/las5l.jpg" alt="Las w słoiku 5L z bonsai"></a>
-        <h3>Las w słoiku 5L z bonsai</h3>
-        <a class="btn" href="las-sloik-5l.html">Zobacz więcej</a>
-      </div>
-      <div class="product">
-        <a href="panel-skalny.html"><img src="images/panel.jpg" alt="Panel 3D - skała (100x100 cm)"></a>
-        <h3>Panel 3D - skała (100x100 cm)</h3>
-        <a class="btn" href="panel-skalny.html">Zobacz więcej</a>
-      </div>
-      <div class="product">
-        <a href="panel-futurystyczny.html"><img src="images/futurystyczny.jpg" alt="Panel 3D - księżycowy"></a>
-        <h3>Panel 3D - księżycowy</h3>
-        <a class="btn" href="panel-futurystyczny.html">Zobacz więcej</a>
-      </div>
-      <div class="product">
-        <a href="doniczka.html"><img src="images/doniczka.jpg" alt="Doniczka skałopodobna mini"></a>
-        <h3>Doniczka skałopodobna mini</h3>
-        <a class="btn" href="doniczka.html">Zobacz więcej</a>
+      <div class="mega-col">
+        <h4>Popularne</h4>
+        <a href="panele3d.html">Panele do tła</a>
+        <a href="customy.html">Wycena custom</a>
+        <a href="b2b.html">Współpraca B2B</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="onas" class="section">
-    <h2>O nas</h2>
-    <p>Terrmal to firma, która zajmuje się tworzeniem unikalnych produktów inspirowanych naturą. Oferujemy terraria, lasy w słoiku, panele 3D i inne dekoracje do wnętrz.</p>
-  </section>
+  <!-- PANELE 3D -->
+  <div class="mega-content" data-panel="panele" role="menu" aria-label="Panele 3D">
+    <div class="mega-grid">
+      <div class="mega-col">
+        <h4>Style</h4>
+        <a href="panele3d.html#skalny">Skała (łupki, grafit)</a>
+        <a href="panele3d.html#korzen">Korzeń tropikalny</a>
+        <a href="panele3d.html#pustynia">Pustynny klimat</a>
+      </div>
+      <div class="mega-col">
+        <h4>Zastosowania</h4>
+        <a href="panel-skalny.html#interior">Ściany we wnętrzach</a>
+        <a href="panel-skalny.html#terraria">Tła do terrariów</a>
+      </div>
+      <div class="mega-col">
+        <h4>Wsparcie</h4>
+        <a href="customy.html">Projekt na wymiar</a>
+        <a href="b2b.html">Hurt / Architekci</a>
+      </div>
+    </div>
+  </div>
 
-  <section id="personalizacja" class="section">
-    <h2>Personalizacja / Customy</h2>
-    <p>Oferujemy możliwość personalizacji naszych produktów. Możesz wybrać preferowany rozmiar, materiał, a także dodatkowe elementy dekoracyjne.</p>
-  </section>
+  <!-- LASY -->
+  <div class="mega-content" data-panel="lasy" role="menu" aria-label="Lasy w słoiku">
+    <div class="mega-grid">
+      <div class="mega-col">
+        <h4>Rozmiary</h4>
+        <a href="lasy.html#s">S – biurko</a>
+        <a href="lasy.html#m">M – klasyczny</a>
+        <a href="lasy.html#l">L – ekspozycyjny</a>
+        <a href="lasy.html#xl">XL – duży</a>
+        <a href="lasy.html#xxl">XXL – terrarium roślinne</a>
+      </div>
+      <div class="mega-col">
+        <h4>Na prezent</h4>
+        <a href="lasy.html#s">Zestaw start</a>
+        <a href="customy.html">Grawer / personalizacja</a>
+      </div>
+      <div class="mega-col">
+      </div>
+    </div>
+  </div>
+</div>
 
-  <footer>
-    <p>&copy; 2025 Terrmal. Wszelkie prawa zastrzeżone.</p>
-  </footer>
+<!-- ===== HEADER ===== -->
+<header>
+  <img src="images/terrmalllogo.jpg" alt="Terrmal Logo" class="logo" />
+  <div class="slogan">Natura w Twoim wnętrzu</div>
+</header>
+
+<!-- ===== BESTSELLERY (SLIDER) ===== -->
+<section class="bestsellery" id="bestsellery">
+  <div class="wrap">
+    <h2>Nasze Bestsellery</h2>
+    <div class="slider">
+      <button class="nav-btn prev" aria-label="Poprzednie">&#10094;</button>
+      <div class="track" id="best-track">
+        <!-- 1 -->
+        <article class="slide">
+          <a href="terrarium.html#terrarium80">
+            <img src="images/terraria.png.png" alt="Terrarium 80x45x45">
+            <h3>Terrarium 80×45×45</h3>
+          </a>
+          <a href="terrarium.html#terrarium80" class="btn">Zobacz</a>
+        </article>
+        <!-- 2 -->
+        <article class="slide">
+          <a href="panele3d.html#skalny">
+            <img src="images/panel 1.png" alt="Panel 3D – skała">
+            <h3>Panel 3D – Skała</h3>
+          </a>
+          <a href="panele3d.html#skalny" class="btn">Zobacz</a>
+        </article>
+        <!-- 3 -->
+        <article class="slide">
+          <a href="lasy.html#m">
+            <img src="images/terrarium 1.png" alt="Las w słoiku – M">
+            <h3>Las w słoiku – M</h3>
+          </a>
+          <a href="lasy.html#m" class="btn">Zobacz</a>
+        </article>
+        <!-- 4 -->
+        <article class="slide">
+          <a href="panele3d.html#korzen">
+            <img src="images/panel 1.png" alt="Panel 3D – korzeń">
+            <h3>Panel 3D – Korzeń</h3>
+          </a>
+          <a href="panele3d.html#korzen" class="btn">Zobacz</a>
+        </article>
+      </div>
+      <button class="nav-btn next" aria-label="Następne">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Twoje oryginalne sekcje (bez zmian w estetyce) ===== -->
+
+<section class="section">
+  <div class="image-section" style="background-image: url('images/terraria.png.png');"></div>
+  <div class="products">
+    <div class="product">
+      <a href="terrarium.html">
+        <img src="images/terraria.png.png" alt="Terrarium">
+        <h3>Terrarium drewniane</h3>
+      </a>
+      <a href="terrarium.html">Zobacz więcej</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="image-section" style="background-image: url('images/panelskalny.png');"></div>
+  <div class="products">
+    <div class="product">
+      <a href="panel-skalny.html">
+        <img src="images/panel 1.png" alt="Panel 3D - skała">
+        <h3>Panel 3D - skała</h3>
+      </a>
+      <a href="panel-skalny.html">Zobacz więcej</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="image-section" style="background-image: url('images/terrarium 1.png');"></div>
+  <div class="products">
+    <div class="product">
+      <a href="las-sloik-2l.html">
+        <img src="images/terrarium 1.png" alt="Las w słoiku 2L">
+        <h3>lasy</h3>
+      </a>
+      <a href="las-sloik-2l.html">Zobacz więcej</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="image-section" style="background-image: url('images/custom.png');"></div>
+  <div class="products">
+    <div class="product">
+      <a href="customy.html">
+        <img src="images/custom.png" alt="Customy">
+        <h3>Customy</h3>
+      </a>
+      <a href="customy.html">Zobacz więcej</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>&copy; 2025 Terrmal. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  /* Mega dropdown logic */
+  const mega = document.getElementById('mega');
+  const triggers = document.querySelectorAll('.mega-trigger');
+  const panels = document.querySelectorAll('.mega-content');
+  let openName = null;
+
+  function openMega(name){
+    if(openName === name){ closeMega(); return; }
+    openName = name;
+    mega.classList.add('active');
+    mega.setAttribute('aria-hidden','false');
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+  }
+  function closeMega(){
+    openName = null;
+    mega.classList.remove('active');
+    mega.setAttribute('aria-hidden','true');
+    panels.forEach(p => p.classList.remove('active'));
+  }
+
+  triggers.forEach(btn=>{
+    const name = btn.dataset.mega;
+    btn.addEventListener('mouseenter', ()=>openMega(name));
+    btn.addEventListener('focus', ()=>openMega(name));
+    btn.addEventListener('click', (e)=>{ e.preventDefault(); openMega(name); });
+  });
+  mega.addEventListener('mouseleave', closeMega);
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMega(); });
+  window.addEventListener('scroll', closeMega, { passive:true });
+  document.addEventListener('click', (e)=>{
+    const isTrigger = e.target.closest('.mega-trigger');
+    const insideMega = e.target.closest('#mega');
+    if(!isTrigger && !insideMega) closeMega();
+  });
+
+  /* Badge koszyka */
+  function updateBadge(){
+    const badge = document.getElementById('cart-count');
+    if(!badge) return;
+    let cart = [];
+    try{ cart = JSON.parse(localStorage.getItem('cart')) || []; }catch(e){ cart=[]; }
+    const n = cart.reduce((a,i)=> a + (i.quantity||1), 0);
+    if(n>0){ badge.textContent=n; badge.style.display='inline-block'; }
+    else{ badge.style.display='none'; }
+  }
+  document.addEventListener('DOMContentLoaded', updateBadge);
+  window.addEventListener('storage', updateBadge);
+
+  /* Slider – Bestsellery */
+  (function(){
+    const track = document.getElementById('best-track');
+    const prev = document.querySelector('.nav-btn.prev');
+    const next = document.querySelector('.nav-btn.next');
+
+    function cardWidth(){
+      const first = track.querySelector('.slide');
+      return first ? first.getBoundingClientRect().width + 20 /*gap*/ : 300;
+    }
+    prev.addEventListener('click', ()=> track.scrollBy({left: -cardWidth()*1.1, behavior:'smooth'}));
+    next.addEventListener('click', ()=> track.scrollBy({left: cardWidth()*1.1, behavior:'smooth'}));
+
+    // Drag scroll
+    let isDown=false, startX=0, scrollLeft=0;
+    track.addEventListener('mousedown', (e)=>{ isDown=true; startX=e.pageX - track.offsetLeft; scrollLeft=track.scrollLeft; track.style.cursor='grabbing'; });
+    track.addEventListener('mouseleave', ()=>{ isDown=false; track.style.cursor='auto'; });
+    track.addEventListener('mouseup', ()=>{ isDown=false; track.style.cursor='auto'; });
+    track.addEventListener('mousemove', (e)=>{
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      track.scrollLeft = scrollLeft - walk;
+    });
+
+    // Auto-scroll co 4s (pauza na hover)
+    let auto = setInterval(()=>{ track.scrollBy({left: cardWidth()*1.1, behavior:'smooth'}); }, 4000);
+    track.addEventListener('mouseenter', ()=>clearInterval(auto));
+    track.addEventListener('mouseleave', ()=>{ auto = setInterval(()=>{ track.scrollBy({left: cardWidth()*1.1, behavior:'smooth'}); }, 4000); });
+  })();
+</script>
+
 </body>
 </html>
